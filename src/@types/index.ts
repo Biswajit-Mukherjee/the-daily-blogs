@@ -21,6 +21,14 @@ export namespace SanityTypes {
     image: SanityImageAssetDocument;
   }>;
 
+  export type Profile = Readonly<{
+    name: string;
+    education: string;
+    description: never;
+    image: SanityImageAssetDocument;
+    email: string;
+  }>;
+
   export type Author<T> = Readonly<{
     _id: string;
     name: string;

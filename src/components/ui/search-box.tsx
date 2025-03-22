@@ -42,21 +42,19 @@ const SearchBox: React.FC<Props> = ({ searchQuery }) => {
   // Run side-effect
   React.useEffect(() => {
     if (!searchValue.trim().length && searchQuery) {
-      router.replace("/");
+      router.replace("/blogs?page=1");
     }
   }, [router, searchValue, searchQuery]);
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // ✅ This will be type-safe and validated.
-    console.log(values);
 
     // Update page query params
     if (!values.query.trim()) {
-      router.push("/");
+      router.push("/blogs?page=1");
     } else {
-      router.push(`/?query=${values.query}`);
+      router.push(`/blogs?query=${values.query}&page=1`);
     }
   }
 
@@ -68,13 +66,11 @@ const SearchBox: React.FC<Props> = ({ searchQuery }) => {
           name="query"
           render={({ field }) => (
             <FormItem className="flex flex-col flex-1">
-              <FormLabel className="sr-only">
-                Search articles, blogs, posts
-              </FormLabel>
+              <FormLabel className="sr-only">Search blogs</FormLabel>
               <FormControl>
                 <Input
                   className="bg-background w-full min-h-10 flex-1 rounded-sm focus-visible:ring-2 ring-offset-2"
-                  placeholder="Search articles, blogs, posts"
+                  placeholder="Search blogs"
                   style={{ marginTop: 0 }}
                   type="search"
                   {...field}
@@ -89,6 +85,8 @@ const SearchBox: React.FC<Props> = ({ searchQuery }) => {
           type="submit"
           aria-label="Search Button"
           className="min-h-10 rounded-sm"
+          disabled={!searchValue}
+          aria-disabled={!searchValue}
         >
           <SearchIcon size={24} />
         </Button>

@@ -9,6 +9,7 @@ import { type SanityTypes } from "@/@types";
 import { urlFor } from "@/lib/sanity";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Separator } from "@/components/ui/separator";
 
 type Props = Readonly<{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,7 +27,7 @@ const BlogDetails: React.FC<Props> = async ({ params }) => {
   const blog: SanityTypes.BlogDetails = await getBlog(blogSlug);
 
   return (
-    <div className="w-full h-full flex p-4 items-center justify-center">
+    <div className="w-full h-full bg-muted flex p-4 items-center justify-center">
       <div className="w-full max-w-5xl min-h-screen mx-auto select-none">
         <div
           data-uia="blog-date"
@@ -69,8 +70,8 @@ const BlogDetails: React.FC<Props> = async ({ params }) => {
           data-uia="blog-user"
           className="w-full mt-10 flex items-center justify-center relative"
         >
-          <hr className="w-full border-border absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-[1]" />
-          <div className="w-fit bg-background flex items-center justify-center gap-2 px-1.5">
+          <Separator className="w-full bg-muted-foreground/25 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+          <div className="w-fit relative z-10 bg-muted flex items-center justify-center gap-2 px-1.5">
             <Avatar className="border border-border">
               <AvatarImage
                 src={urlFor(blog.author?.image).url()}

@@ -28,7 +28,7 @@ const RootLayout: NextPage<NextTypes.Layout> = ({ children }) => {
           disableTransitionOnChange
         >
           <Header />
-          <div>{children}</div>
+          <div className="w-full mt-20">{children}</div>
           <Footer />
         </ThemeProvider>
       </body>
