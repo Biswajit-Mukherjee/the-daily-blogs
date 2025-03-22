@@ -74,6 +74,7 @@ const BlogDetails: React.FC<Props> = async ({ params }) => {
           <div className="w-fit relative z-10 bg-muted flex items-center justify-center gap-2 px-1.5">
             <Avatar className="border border-border">
               <AvatarImage
+                className="object-cover"
                 src={urlFor(blog.author?.image).url()}
                 alt={blog.author?.name}
               />
