@@ -14,7 +14,12 @@ const NavMenuMobile: React.FC = () => {
     <div className="block md:hidden mr-2.5">
       <Drawer direction="left">
         <DrawerTrigger asChild>
-          <Button className="bg-inherit text-current [&_svg]:size-8 p-0 shadow-none rounded-none hover:bg-inherit active:bg-inherit">
+          <Button
+            role="button"
+            id="al"
+            aria-label="Menu"
+            className="bg-inherit text-current [&_svg]:size-8 p-0 shadow-none rounded-none hover:bg-inherit active:bg-inherit"
+          >
             <Menu />
           </Button>
         </DrawerTrigger>

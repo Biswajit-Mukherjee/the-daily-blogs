@@ -50,11 +50,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
       </CardHeader>
       <CardContent className="w-full flex items-center justify-between p-0">
         <Link
-          aria-label="redirect-link"
+          aria-label={blog.title}
           className="text-primary hover:underline underline-offset-2 underline-primary font-semibold antialiased"
           href={`/blog/${blog.slug}`}
         >
           Read more
+          <span className="sr-only">{blog.title}</span>
         </Link>
         <div className="flex items-center gap-2 text-sm leading-normal font-medium antialiased">
           <CalendarIcon size={20} />
