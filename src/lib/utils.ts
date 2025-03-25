@@ -12,7 +12,7 @@ export function cn(...inputs: ClassValue[]): string {
 /** Fetch most recent blogs from Sanity in descending order of creation date */
 export async function getMostRecentBlogs(): Promise<SanityTypes.Blog[]> {
   const query = `
-    *[_type == 'blog' && !(_id in path("drafts.**"))] | order(_createdAt desc) [0...${MOST_RECENT_BLOGS}] {
+    *[_type == 'blog'] | order(_createdAt desc) [0...${MOST_RECENT_BLOGS}] {
     "id": _id,
     "createdAt": _createdAt,
     "slug": slug.current,
@@ -29,7 +29,7 @@ export async function getMostRecentBlogs(): Promise<SanityTypes.Blog[]> {
 /** Fetch all blogs from Sanity in descending order of creation date */
 export async function getBlogs(): Promise<SanityTypes.Blog[]> {
   const query = `
-    *[_type == 'blog' && !(_id in path("drafts.**"))] | order(_createdAt desc) {
+    *[_type == 'blog'] | order(_createdAt desc) {
     "id": _id,
     "createdAt": _createdAt,
     "slug": slug.current,
@@ -46,7 +46,7 @@ export async function getBlogs(): Promise<SanityTypes.Blog[]> {
 /** Fetch blog by slug from Sanity */
 export async function getBlog(slug: string): Promise<SanityTypes.BlogDetails> {
   const query = `
-    *[_type == 'blog' && !(_id in path("drafts.**")) && slug.current == $slug][0] {
+    *[_type == 'blog' && slug.current == $slug][0] {
     "id": _id,
     "createdAt": _createdAt,
     "slug": slug.current,
@@ -67,7 +67,7 @@ export async function getBlog(slug: string): Promise<SanityTypes.BlogDetails> {
 /** Fetch user profile details from Sanity */
 export async function getProfile() {
   const query = `
-    *[_type == 'profile' && !(_id in path("drafts.**"))] {
+    *[_type == 'profile'] {
     name,
     education,
     description,
@@ -83,14 +83,14 @@ export async function getProfile() {
 /** Fetch blogs by search query */
 export async function getBlogsByQuery(
   searchQuery: string,
-  startIndex: number = 0,
+  startIndex: number = 0
 ): Promise<SanityTypes.Blog[]> {
   const endIndex = startIndex + NUMBER_OF_BLOGS_PER_PAGE;
 
   // GROQ query to fetch blogs that contains the queried string
   const query = searchQuery
     ? `
-    *[_type == 'blog' && !(_id in path("drafts.**")) && (title match "*${searchQuery}*" || description match "*${searchQuery}*")] | order(_createdAt desc) [${startIndex}...${endIndex}] {
+    *[_type == 'blog' && (title match "*${searchQuery}*" || description match "*${searchQuery}*")] | order(_createdAt desc) [${startIndex}...${endIndex}] {
     "id": _id,
     "createdAt": _createdAt,
     "slug": slug.current,
@@ -100,7 +100,7 @@ export async function getBlogsByQuery(
 }
   `
     : `
-    *[_type == 'blog' && !(_id in path("drafts.**"))] | order(_createdAt desc) [${startIndex}...${endIndex}] {
+    *[_type == 'blog'] | order(_createdAt desc) [${startIndex}...${endIndex}] {
     "id": _id,
     "createdAt": _createdAt,
     "slug": slug.current,
