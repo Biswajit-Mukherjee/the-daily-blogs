@@ -44,13 +44,13 @@ const About: NextPage = async () => {
             </div>
           </div>
 
-          <div className="text-base leading-normal antialiased prose mt-10">
+          <div className="text-base leading-normal antialiased prose dark:prose-invert mt-10">
             <PortableText value={profile.description} />
           </div>
 
           <Separator className="w-full bg-muted-foreground/25 mt-10 mb-5" />
 
-          <div className="w-full prose">
+          <div className="w-full prose dark:prose-invert">
             <h4 className="text-lg antialiased">Contact me</h4>
             <div className="flex items-center gap-2.5">
               <Mail />
