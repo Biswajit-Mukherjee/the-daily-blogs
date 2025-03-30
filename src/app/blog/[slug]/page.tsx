@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: "en_IN",
     },
     alternates: {
-      canonical: `/blog/${blog.slug}`,
+      canonical: new URL(`${SITE.url}/blog/${blog.slug}`),
     },
     authors: [{ name: SITE.creator }],
   };

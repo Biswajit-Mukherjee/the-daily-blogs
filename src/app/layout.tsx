@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   description: "Get the latest and greatest of the world of blogs",
   keywords: ["the daily blogs", "thedailyblogs", "blog", "article"],
+  alternates: {
+    canonical: new URL(SITE.url),
+  },
 };
 
 const RootLayout: NextPage<NextTypes.Layout> = ({ children }) => {
