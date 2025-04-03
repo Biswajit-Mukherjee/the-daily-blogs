@@ -1,4 +1,4 @@
-export const MOST_RECENT_BLOGS = 4;
+export const MOST_RECENT_BLOGS = 6;
 export const NUMBER_OF_BLOGS_PER_PAGE = 6;
 export const SITE = {
   name: "The Daily Blogs",
