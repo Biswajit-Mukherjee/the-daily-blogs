@@ -11,19 +11,9 @@ export function cn(...inputs: ClassValue[]): string {
 
 /** Fetch most recent blogs from Sanity in descending order of creation date */
 export async function getMostRecentBlogs(): Promise<SanityTypes.Blog[]> {
-  const query = `
-    *[_type == 'blog'] | order(_createdAt desc) [0...${MOST_RECENT_BLOGS}] {
-    "id": _id,
-    "createdAt": _createdAt,
-    "slug": slug.current,
-    description,
-    title,
-    image
-}
-  `;
-
-  const data: SanityTypes.Blog[] = await sanityClient.fetch(query);
-  return data;
+  const blogs: SanityTypes.Blog[] = await getBlogs();
+  const recentBlogs: SanityTypes.Blog[] = blogs.slice(0, MOST_RECENT_BLOGS);
+  return recentBlogs;
 }
 
 /** Fetch all blogs from Sanity in descending order of creation date */
