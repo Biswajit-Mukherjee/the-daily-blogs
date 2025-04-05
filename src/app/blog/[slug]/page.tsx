@@ -39,11 +39,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: new URL(`${SITE.url}/blog/${blog.slug}`),
     },
+    keywords: blog.seo ? blog.seo.concat(blog.title) : blog.title,
     authors: [{ name: SITE.creator }],
   };
 }
 
-const BlogDetails = async ({ params } : { params: Promise<any> }) => {
+const BlogDetails = async ({ params }: { params: Promise<any> }) => {
   const pageParams = await params;
 
   if (!pageParams) {
@@ -66,12 +67,13 @@ const BlogDetails = async ({ params } : { params: Promise<any> }) => {
     author: {
       "@type": "Person",
       name: blog.author?.name,
-      image: urlFor(blog.author?.image).url() ?? '',
+      image: urlFor(blog.author?.image).url() ?? "",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": SITE.url,
     },
+    keywords: blog.seo ? blog.seo.concat(blog.title) : blog.title,
     datePublished: dayjs(blog.createdAt).format("MMMM D, YYYY"),
     publisher: {
       "@type": "Person",
@@ -107,6 +109,7 @@ const BlogDetails = async ({ params } : { params: Promise<any> }) => {
                 blurDataURL={urlFor(blog.image).url()}
                 src={urlFor(blog.image).url()}
                 placeholder="blur"
+                title={blog.title}
                 alt={blog.title}
                 quality={80}
                 priority
@@ -116,8 +119,17 @@ const BlogDetails = async ({ params } : { params: Promise<any> }) => {
           </div>
 
           <div
+            className="px-0 py-6 text-muted-foreground/80 leading-normal antialiased lowercase flex flex-row flex-wrap items-center justify-center gap-3"
+            data-uia="blog-keywords"
+          >
+            {blog.seo?.map((keyword, index) => (
+              <span key={index}>{`#${keyword}`}</span>
+            ))}
+          </div>
+
+          <div
             data-uia="blog-description"
-            className="w-full mt-6 text-center text-gray-500 text-lg leading-normal antialiased"
+            className="w-full mt-6 text-center text-muted-foreground text-lg font-medium leading-normal antialiased"
           >
             {blog.description}
           </div>

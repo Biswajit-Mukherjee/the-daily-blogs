@@ -39,5 +39,6 @@ export namespace SanityTypes {
     Readonly<{
       content: never;
       author: SanityImageAssetDocument | undefined;
+      seo: string[] | null | undefined;
     }>;
 }

@@ -44,7 +44,8 @@ export async function getBlog(slug: string): Promise<SanityTypes.BlogDetails> {
     content,
     title,
     image,
-    author-> { name, image }
+    author-> { name, image },
+    seo
   }
 `;
 
