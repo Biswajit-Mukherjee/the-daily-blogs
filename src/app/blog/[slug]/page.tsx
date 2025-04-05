@@ -40,6 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: new URL(`${SITE.url}/blog/${blog.slug}`),
     },
     keywords: blog.seo ? blog.seo.concat(blog.title) : blog.title,
+    robots: "index,noarchive,follow,max-image-preview:large",
     authors: [{ name: SITE.creator }],
   };
 }
