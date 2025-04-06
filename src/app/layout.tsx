@@ -26,6 +26,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 3600; // revalidate at most every hour
+
 const RootLayout: NextPage<NextTypes.Layout> = ({ children }) => {
   return (
     <html lang="en">
