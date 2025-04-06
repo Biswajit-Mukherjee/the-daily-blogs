@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.the-daily-blogs.com
+
+# Sitemaps
+Sitemap: https://www.the-daily-blogs.com/sitemap.xml
