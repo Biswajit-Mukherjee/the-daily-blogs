@@ -20,7 +20,7 @@ export type BlogCardProps = Readonly<{ blog: SanityTypes.Blog }>;
 const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   return (
     <Card
-      className="w-full sm:max-w-[320px] h-[480px] p-5 flex flex-col bg-card shadow-md select-none rounded border border-border"
+      className="w-full max-w-full md:max-w-[320px] h-[500px] sm:h-[640px] md:h-[480px] p-5 flex flex-col bg-card shadow-lg select-none rounded-lg border border-border"
       key={blog.id}
     >
       <CardHeader className="w-full flex-1 p-0 space-y-4">

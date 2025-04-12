@@ -15,7 +15,6 @@ import { urlFor } from "@/lib/sanity";
 import StructuredData from "@/components/structured-data";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Separator } from "@/components/ui/separator";
 
 type Props = Readonly<{ params: Promise<any> }>;
 
@@ -62,6 +61,10 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
   const schemaData: WithContext<BlogPosting> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": SITE.url + `/blog/${blogSlug}`,
+    },
     headline: blog.title,
     description: blog.description,
     image: urlFor(blog.image).url() ?? "",
@@ -69,17 +72,18 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
       "@type": "Person",
       name: blog.author?.name,
       image: urlFor(blog.author?.image).url() ?? "",
+      url: "https://www.the-daily-blogs.com/about",
     },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": SITE.url,
-    },
-    keywords: blog.seo ? blog.seo.concat(blog.title) : blog.title,
-    datePublished: dayjs(blog.createdAt).format("MMMM D, YYYY"),
     publisher: {
-      "@type": "Person",
-      name: blog.author?.name,
+      "@type": "Organization",
+      name: "The Daily Blogs",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.the-daily-blogs.com/favicon.ico",
+      },
     },
+    datePublished: dayjs(blog.createdAt).format("MMMM D, YYYY"),
+    dateModified: dayjs(blog.updatedAt).format("MMMM D, YYYY"),
   };
 
   return (
@@ -103,6 +107,27 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
             {blog.title}
           </h1>
 
+          <div
+            data-uia="blog-user"
+            className="w-full mt-10 flex items-center justify-center relative"
+          >
+            <div className="w-fit flex items-center justify-center gap-2 px-1.5">
+              <Avatar className="border border-border">
+                <AvatarImage
+                  className="object-cover"
+                  src={urlFor(blog.author?.image).url()}
+                  alt={blog.author?.name}
+                />
+                <AvatarFallback>
+                  {blog.author?.name[0].toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              <p className="text-lg leading-normal font-semibold antialiased align-middle">
+                {blog.author?.name}
+              </p>
+            </div>
+          </div>
+
           <div data-uia="blog-image" className="w-full mt-8 relative">
             <AspectRatio ratio={16 / 9}>
               <Image
@@ -124,7 +149,7 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
             data-uia="blog-keywords"
           >
             {blog.seo?.map((keyword, index) => (
-              <span key={index}>{`#${keyword}`}</span>
+              <span key={index}>{`#${keyword.replace(" ", "")}`}</span>
             ))}
           </div>
 
@@ -133,28 +158,6 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
             className="w-full mt-6 text-center text-muted-foreground text-lg font-medium leading-normal antialiased"
           >
             {blog.description}
-          </div>
-
-          <div
-            data-uia="blog-user"
-            className="w-full mt-10 flex items-center justify-center relative"
-          >
-            <Separator className="w-full bg-muted-foreground/25 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-            <div className="w-fit relative z-10 bg-muted flex items-center justify-center gap-2 px-1.5">
-              <Avatar className="border border-border">
-                <AvatarImage
-                  className="object-cover"
-                  src={urlFor(blog.author?.image).url()}
-                  alt={blog.author?.name}
-                />
-                <AvatarFallback>
-                  {blog.author?.name[0].toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <p className="text-lg leading-normal font-semibold antialiased align-middle">
-                {blog.author?.name}
-              </p>
-            </div>
           </div>
 
           <article

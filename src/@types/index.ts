@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { type SanityImageAssetDocument } from "next-sanity";
+import { ContactPage } from "schema-dts";
 
 // Next types
 export namespace NextTypes {
@@ -17,13 +18,14 @@ export namespace SanityTypes {
     slug: string;
     title: string;
     createdAt: Date;
+    updatedAt: Date;
     description: string;
     image: SanityImageAssetDocument;
   }>;
 
   export type Profile = Readonly<{
     name: string;
-    education: string;
+    jobTitle: string;
     description: never;
     image: SanityImageAssetDocument;
     email: string;
@@ -76,3 +78,14 @@ export namespace SanityTypes {
     description: never;
   }>;
 }
+
+// Schema data types
+export type TContactPage = ContactPage &
+  Readonly<{
+    contactPoint: {
+      "@type": string;
+      contactType: string;
+      email: string;
+      url: string;
+    };
+  }>;

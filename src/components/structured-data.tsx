@@ -1,9 +1,16 @@
 import * as React from "react";
 import Script from "next/script";
-import { BlogPosting, WithContext } from "schema-dts";
+import {
+  AboutPage,
+  BlogPosting,
+  WebPage,
+  WebSite,
+  WithContext,
+} from "schema-dts";
+import { TContactPage } from "@/@types";
 
 type Props = {
-  data: WithContext<BlogPosting>;
+  data: WithContext<BlogPosting | WebPage | WebSite | AboutPage | TContactPage>;
 };
 
 const StructuredData: React.FC<Props> = ({ data }): React.JSX.Element => {

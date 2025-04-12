@@ -14,8 +14,8 @@ export default {
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'education',
-      title: 'Education',
+      name: 'jobTitle',
+      title: 'Job Title',
       type: 'string',
       validation: (rule) => rule.required(),
     }),

@@ -15,7 +15,7 @@ const FilteredBlogs: React.FC<Props> = ({ query = "", blogs }) => {
         </Label>
       )}
 
-      <div className="flex flex-wrap gap-4 w-full mt-10">
+      <div className="flex flex-wrap gap-5 w-full mt-10">
         {blogs.map((blog: SanityTypes.Blog) => (
           <BlogCard key={blog.id} blog={blog} />
         ))}

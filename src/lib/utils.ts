@@ -22,6 +22,7 @@ export async function getBlogs(): Promise<SanityTypes.Blog[]> {
     *[_type == 'blog'] | order(_createdAt desc) {
     "id": _id,
     "createdAt": _createdAt,
+    "updatedAt": _updatedAt,
     "slug": slug.current,
     description,
     title,
@@ -60,7 +61,7 @@ export async function getProfile() {
   const query = `
     *[_type == 'profile'] {
     name,
-    education,
+    jobTitle,
     description,
     image,
     email,
