@@ -12,7 +12,7 @@ const ContactUs: NextPage = async () => {
   const profile: SanityTypes.Profile = await getProfile();
 
   return (
-    <div className="w-full min-h-screen bg-muted/50 grid gap-10">
+    <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10">
       <section
         data-layout="section"
         className="w-full h-[75vh] rounded-tl-[8rem] rounded-br-[8rem] overflow-hidden relative"

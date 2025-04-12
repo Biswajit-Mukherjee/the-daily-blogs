@@ -9,7 +9,7 @@ const Home: NextPage = async () => {
   const blogs: SanityTypes.Blog[] = await getMostRecentBlogs();
 
   return (
-    <div className="w-full min-h-screen bg-muted/50 grid gap-10 px-4 py-10">
+    <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10 px-4 py-10">
       <Jumbotron />
 
       <div data-uia="blogs-container" className="w-full mt-10 mx-auto mb-20">

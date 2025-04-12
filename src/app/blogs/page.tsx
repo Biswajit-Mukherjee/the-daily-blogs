@@ -29,7 +29,7 @@ const Blogs: React.FC<Props> = async ({ searchParams }) => {
   );
 
   return (
-    <div className="w-full min-h-screen bg-muted/50 grid gap-10 px-4 py-10">
+    <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10 px-4 py-10">
       <div className="w-full max-w-[440px] mx-auto" data-uia="search">
         <SearchBox searchQuery={query} />
       </div>
