@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { MoveRight } from "lucide-react";
@@ -11,10 +11,39 @@ import { getProfile, getSiteInfo } from "@/lib/utils";
 import { urlFor } from "@/lib/sanity";
 import { type SanityTypes } from "@/@types";
 import { PortableText } from "next-sanity";
+import { SITE } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title:
+    "About Us | The Daily Blogs – Empowering Wellness, Positivity & Life Transformation",
+  metadataBase: new URL(SITE.url),
+  description:
+    "Learn more about The Daily Blogs — a positive space for fitness, lifestyle, mental health, and personal growth content. Join our mission to inspire, educate, and empower.",
+  keywords: [
+    "fitness blog",
+    "lifestyle tips",
+    "mental health blog",
+    "well-being",
+    "personal growth",
+    "positive living",
+    "life transformation",
+    "The Daily Blogs",
+    "about The Daily Blogs",
+    "fitness lifestyle blog",
+    "mental wellness blog",
+    "positive living",
+    "personal development",
+    "health and wellness blog",
+    "life transformation stories",
+  ],
+  alternates: {
+    canonical: new URL(SITE.url),
+  },
+};
 
 const About: NextPage = async () => {
   const profile: SanityTypes.Profile = await getProfile();
-  const site: SanityTypes.Site = await getSiteInfo();
+  const aboutSite: SanityTypes.AboutSite = await getSiteInfo();
 
   return (
     <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10">
@@ -34,11 +63,11 @@ const About: NextPage = async () => {
         />
         <div className="absolute top-1/2 left-[20%] -translate-x-[20%] -translate-y-1/2 z-20">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-normal antialiased">
-            About
+            About Us
           </h1>
-          <p className="text-gray-100 font-normal text-lg leading-normal antialiased prose mt-5">
-            Blogs on lifestyle, fitness and everything in between.
-          </p>
+          <div className="text-gray-100 font-normal text-lg leading-normal antialiased prose mt-5">
+            <PortableText value={aboutSite.subtitle} />
+          </div>
         </div>
       </section>
 
@@ -47,16 +76,18 @@ const About: NextPage = async () => {
         data-layout="container"
       >
         <section data-layout="section">
-          <div className="w-full flex flex-col-reverse md:flex-row items-center gap-6">
+          <div className="w-full flex flex-col-reverse md:flex-row items-center gap-10">
             <div>
-              <h1 className="text-foreground text-3xl sm:text-4xl md:text-5xl font-bold leading-normal antialiased">
-                About <span className="text-primary">{site.name}</span>
+              <h1 className="text-foreground text-3xl sm:text-4xl md:text-5xl text-center md:text-left font-bold leading-normal antialiased">
+                About <span className="text-primary">{aboutSite.title}</span>
               </h1>
-              <div className="w-full mt-4 font-normal text-base text-wrap leading-normal antialiased prose dark:prose-invert">
-                <PortableText value={site.description} />
+
+              <div className="w-full mt-8 font-normal text-base text-wrap leading-normal antialiased prose dark:prose-invert">
+                <PortableText value={aboutSite.description} />
               </div>
+
               <Link
-                className="flex items-center justify-center gap-5 max-w-xs bg-primary shadow-xl hover:scale-110 transition-transform duration-200 rounded-lg text-white text-xl font-semibold p-5 mt-8"
+                className="w-full max-w-full md:max-w-xs flex items-center justify-center gap-5 bg-primary shadow-xl hover:scale-110 transition-transform duration-200 rounded-lg text-white text-xl font-semibold p-5 mt-12"
                 href="/contact-us"
               >
                 <span>Contact Us</span>
@@ -80,7 +111,19 @@ const About: NextPage = async () => {
           </div>
         </section>
 
-        <section className="mt-20" data-layout="section">
+        <section
+          className="w-full max-w-6xl mx-auto mt-20"
+          data-layout="section"
+        >
+          <div className="w-full max-w-full mt-8 font-normal text-base text-wrap leading-normal antialiased prose dark:prose-invert">
+            <PortableText value={aboutSite.largeDescription} />
+          </div>
+        </section>
+
+        <section
+          className="w-full max-w-6xl mx-auto mt-20"
+          data-layout="section"
+        >
           <h1 className="text-center text-foreground text-3xl sm:text-4xl md:text-5xl font-bold leading-normal antialiased">
             About me
           </h1>

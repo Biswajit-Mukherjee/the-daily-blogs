@@ -111,12 +111,14 @@ export async function getBlogsByQuery(
 export async function getSiteInfo() {
   const query = `
     *[_type == 'about'] {
-    name,
-    description
+    title,
+    subtitle,
+    description,
+    largeDescription
 }
   `;
 
-  const data: SanityTypes.Site[] = await sanityClient.fetch(query);
+  const data: SanityTypes.AboutSite[] = await sanityClient.fetch(query);
   return data[0];
 }
 

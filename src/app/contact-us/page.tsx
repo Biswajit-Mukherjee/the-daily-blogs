@@ -12,17 +12,17 @@ import { PortableText } from "next-sanity";
 
 export const metadata: Metadata = {
   title:
-    "Contact Us | The Daily Blogs – Reach Out for Wellness, Positivity, and Lifestyle Insights",
+    "Contact Us | The Daily Blogs – Let's Connect on Wellness, Lifestyle & Growth",
   metadataBase: new URL(SITE.url),
   description:
-    "Get in touch with The Daily Blogs for collaborations, questions, or feedback related to fitness, lifestyle, mental health, and life transformation. We'd love to hear from you!",
+    "Get in touch with The Daily Blogs for questions, collaborations, or feedback related to fitness, lifestyle, mental health, and personal growth. We're here to connect with you!",
   keywords: [
-    "the daily blogs",
-    "thedailyblogs",
-    "blog",
-    "blog post",
-    "article",
-    "contact",
+    "contact The Daily Blogs",
+    "fitness blog contact",
+    "mental health blog",
+    "lifestyle blogger email",
+    "collaborate wellness blog",
+    "personal growth blog",
   ],
   alternates: {
     canonical: new URL(SITE.url),

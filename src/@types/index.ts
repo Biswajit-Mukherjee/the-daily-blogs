@@ -44,9 +44,11 @@ export namespace SanityTypes {
       seo: string[] | null | undefined;
     }>;
 
-  export type Site = Readonly<{
-    name: string;
+  export type AboutSite = Readonly<{
+    title: string;
+    subtitle: never;
     description: never;
+    largeDescription: never;
   }>;
 
   export type PrivacyPolicy = Readonly<{
