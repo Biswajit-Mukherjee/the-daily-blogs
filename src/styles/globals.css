@@ -106,3 +106,10 @@ strong {
     transform: rotate(1turn);
   }
 }
+
+/* Policy, Terms & Disclaimer */
+.policy a,
+.terms a,
+.disclaimer a {
+  @apply text-primary;
+}

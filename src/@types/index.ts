@@ -27,6 +27,8 @@ export namespace SanityTypes {
     description: never;
     image: SanityImageAssetDocument;
     email: string;
+    facebook: string;
+    youtube: string;
   }>;
 
   export type Author<T> = Readonly<{
@@ -41,4 +43,28 @@ export namespace SanityTypes {
       author: SanityImageAssetDocument | undefined;
       seo: string[] | null | undefined;
     }>;
+
+  export type Site = Readonly<{
+    name: string;
+    description: never;
+  }>;
+
+  export type PrivacyPolicy = Readonly<{
+    title: string;
+    description: never;
+    createdAt: Date;
+    updatedAt: Date;
+  }>;
+
+  export type Terms = Readonly<{
+    title: string;
+    description: never;
+    createdAt: Date;
+  }>;
+
+  export type Disclaimer = Readonly<{
+    title: string;
+    description: never;
+    createdAt: Date;
+  }>;
 }

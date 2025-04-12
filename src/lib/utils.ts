@@ -63,7 +63,9 @@ export async function getProfile() {
     education,
     description,
     image,
-    email
+    email,
+    facebook,
+    youtube
 }
   `;
 
@@ -103,4 +105,60 @@ export async function getBlogsByQuery(
 
   const data: SanityTypes.Blog[] = await sanityClient.fetch(query);
   return data;
+}
+
+/** Fetch site info from Sanity */
+export async function getSiteInfo() {
+  const query = `
+    *[_type == 'about'] {
+    name,
+    description
+}
+  `;
+
+  const data: SanityTypes.Site[] = await sanityClient.fetch(query);
+  return data[0];
+}
+
+/** Fetch privacy policy from Sanity */
+export async function getPrivacyPolicy() {
+  const query = `
+    *[_type == 'privacy'] {
+  "createdAt": _createdAt,
+  "updatedAt": _updatedAt,
+  title,
+  description
+}
+  `;
+
+  const data: SanityTypes.PrivacyPolicy[] = await sanityClient.fetch(query);
+  return data[0];
+}
+
+/** Fetch terms & conditions from Sanity */
+export async function getTermsAndConditions() {
+  const query = `
+    *[_type == 'terms'] {
+  "createdAt": _createdAt,
+  title,
+  description
+}
+  `;
+
+  const data: SanityTypes.Terms[] = await sanityClient.fetch(query);
+  return data[0];
+}
+
+/** Fetch disclaimer from Sanity */
+export async function getDisclaimer() {
+  const query = `
+    *[_type == 'disclaimer'] {
+  "createdAt": _createdAt,
+  title,
+  description
+}
+  `;
+
+  const data: SanityTypes.Disclaimer[] = await sanityClient.fetch(query);
+  return data[0];
 }

@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import type { Metadata, NextPage } from "next";
 import { Inter } from "next/font/google";
+import { Bounce, ToastContainer } from "react-toastify";
 import { type NextTypes } from "@/@types";
 import { SITE } from "@/lib/data";
 import { ThemeProvider } from "@/providers/theme-provider";
@@ -21,7 +22,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   description:
     "Explore our latest blog posts on topics that matter. Stay updated with insights, tips, and stories tailored for curious minds and passionate creators.",
-  keywords: ["the daily blogs", "thedailyblogs", "blog", "blog post", "article"],
+  keywords: [
+    "the daily blogs",
+    "thedailyblogs",
+    "blog",
+    "blog post",
+    "article",
+  ],
   alternates: {
     canonical: new URL(SITE.url),
   },
@@ -43,6 +50,19 @@ const RootLayout: NextPage<NextTypes.Layout> = ({ children }) => {
           <div className="w-full mt-20">{children}</div>
           <Footer />
         </ThemeProvider>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable={false}
+          pauseOnHover={false}
+          theme="colored"
+          transition={Bounce}
+        />
       </body>
     </html>
   );

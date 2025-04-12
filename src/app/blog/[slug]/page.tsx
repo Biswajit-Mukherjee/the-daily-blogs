@@ -86,7 +86,7 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
     <>
       <StructuredData data={schemaData} />
 
-      <div className="w-full h-full bg-muted flex p-4 items-center justify-center">
+      <div className="w-full h-full bg-muted/50 flex p-4 items-center justify-center">
         <div className="w-full max-w-5xl min-h-screen mx-auto select-none">
           <div
             data-uia="blog-date"
