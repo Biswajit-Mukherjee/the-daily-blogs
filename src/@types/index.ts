@@ -67,4 +67,10 @@ export namespace SanityTypes {
     description: never;
     createdAt: Date;
   }>;
+
+  export type Contact = Readonly<{
+    title: string;
+    subtitle: never;
+    description: never;
+  }>;
 }

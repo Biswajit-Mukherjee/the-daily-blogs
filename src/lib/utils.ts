@@ -162,3 +162,17 @@ export async function getDisclaimer() {
   const data: SanityTypes.Disclaimer[] = await sanityClient.fetch(query);
   return data[0];
 }
+
+/** Fetch contact us details from Sanity */
+export async function getContactUsDetails() {
+  const query = `
+    *[_type == 'contact'] {
+  title,
+  subtitle,
+  description
+}
+  `;
+
+  const data: SanityTypes.Contact[] = await sanityClient.fetch(query);
+  return data[0];
+}

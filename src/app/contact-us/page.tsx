@@ -1,15 +1,37 @@
 import * as React from "react";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import Image from "next/image";
 import { FaEnvelopesBulk } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { type SanityTypes } from "@/@types";
-import { getProfile } from "@/lib/utils";
+import { getContactUsDetails, getProfile } from "@/lib/utils";
 import ContactForm from "@/components/shared/contact-form";
+import { SITE } from "@/lib/data";
+import { PortableText } from "next-sanity";
+
+export const metadata: Metadata = {
+  title:
+    "Contact Us | The Daily Blogs – Reach Out for Wellness, Positivity, and Lifestyle Insights",
+  metadataBase: new URL(SITE.url),
+  description:
+    "Get in touch with The Daily Blogs for collaborations, questions, or feedback related to fitness, lifestyle, mental health, and life transformation. We'd love to hear from you!",
+  keywords: [
+    "the daily blogs",
+    "thedailyblogs",
+    "blog",
+    "blog post",
+    "article",
+    "contact",
+  ],
+  alternates: {
+    canonical: new URL(SITE.url),
+  },
+};
 
 const ContactUs: NextPage = async () => {
   const profile: SanityTypes.Profile = await getProfile();
+  const contact: SanityTypes.Contact = await getContactUsDetails();
 
   return (
     <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10">
@@ -29,13 +51,12 @@ const ContactUs: NextPage = async () => {
         />
         <div className="absolute top-1/2 left-[20%] -translate-x-[20%] -translate-y-1/2 z-20">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-normal antialiased">
-            Contact
+            {contact.title}
           </h1>
 
-          <p className="text-gray-100 font-normal text-lg leading-normal antialiased prose mt-5">
-            Stuck in the process or just want to say{" "}
-            <span className="text-xl font-bold">Hi</span> 😉
-          </p>
+          <div className="text-gray-100 font-normal text-lg leading-normal antialiased prose mt-5">
+            <PortableText value={contact.subtitle} />
+          </div>
         </div>
       </section>
 
@@ -43,56 +64,57 @@ const ContactUs: NextPage = async () => {
         className="w-full max-w-6xl mt-10 mx-auto mb-5 px-4 py-10 relative"
         data-layout="section"
       >
-        <div className="w-1/2 h-auto aspect-square top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1] absolute bg-muted/60 rounded-full" />
-
         <div className="w-full grid gap-10 relative z-10">
           <h1 className="text-center text-foreground text-3xl sm:text-4xl md:text-5xl font-bold leading-normal antialiased mx-auto">
             Get in Touch
           </h1>
 
-          <p className="text-base font-normal leading-normal antialiased text-center text-muted-foreground prose mx-auto">
-            Don’t hesitate to get help or just to chit chat with me 🙂 You can
-            reach me on the platforms below !
-          </p>
+          <article className="w-full mx-auto text-base font-normal leading-normal antialiased prose dark:prose-invert mb-10">
+            <PortableText value={contact.description} />
+          </article>
+        </div>
+      </section>
 
-          <div
-            data-layout="container"
-            className="flex flex-col md:flex-row items-center justify-center gap-10"
-          >
-            <div className="w-fit h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
-              <div className="w-20 h-20 aspect-square rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                <FaEnvelopesBulk size={40} />
-              </div>
-              <h3 className="text-2xl font-bold leading-normal antialiased text-foreground">
-                Email Me
-              </h3>
-              <div className="text-base leading-normal antialiased text-muted-foreground">
-                {profile.email}
-              </div>
+      <section className="w-full max-w-6xl mx-auto mt-10 mb-20 relative">
+        <div className="w-1/2 h-auto aspect-square top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1] absolute bg-muted/60 rounded-full" />
+
+        <div
+          data-layout="container"
+          className="flex flex-col md:flex-row items-center justify-center gap-10 relative z-10"
+        >
+          <div className="w-fit h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
+            <div className="w-20 h-20 aspect-square rounded-full bg-primary/10 text-primary flex items-center justify-center">
+              <FaEnvelopesBulk size={40} />
             </div>
-
-            <div className="w-fit h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
-              <div className="w-20 h-20 aspect-square rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                <FaFacebook size={40} />
-              </div>
-              <h3 className="text-2xl font-bold leading-normal antialiased text-foreground">
-                Connect on Facebook
-              </h3>
-              <div className="text-base leading-normal antialiased text-muted-foreground">
-                {profile.facebook.split("facebook.com/")[1]}
-              </div>
+            <h3 className="text-2xl font-bold leading-normal antialiased text-foreground">
+              Email Me
+            </h3>
+            <div className="text-base leading-normal antialiased text-muted-foreground">
+              {profile.email}
             </div>
+          </div>
 
-            <div className="w-fit h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
-              <div className="w-20 h-20 aspect-square rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                <FaYoutube size={40} />
-              </div>
-              <h3 className="text-2xl font-bold leading-normal antialiased text-foreground">
-                Subscribe on YouTube
-              </h3>
-              <div className="text-base leading-normal antialiased text-muted-foreground">
-                {profile.youtube.split("youtube.com/")[1]}
-              </div>
+          <div className="w-fit h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
+            <div className="w-20 h-20 aspect-square rounded-full bg-primary/10 text-primary flex items-center justify-center">
+              <FaFacebook size={40} />
+            </div>
+            <h3 className="text-2xl font-bold leading-normal antialiased text-foreground">
+              Connect on Facebook
+            </h3>
+            <div className="text-base leading-normal antialiased text-muted-foreground">
+              {profile.facebook.split("facebook.com/")[1]}
+            </div>
+          </div>
+
+          <div className="w-fit h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
+            <div className="w-20 h-20 aspect-square rounded-full bg-primary/10 text-primary flex items-center justify-center">
+              <FaYoutube size={40} />
+            </div>
+            <h3 className="text-2xl font-bold leading-normal antialiased text-foreground">
+              Subscribe on YouTube
+            </h3>
+            <div className="text-base leading-normal antialiased text-muted-foreground">
+              {profile.youtube.split("youtube.com/")[1]}
             </div>
           </div>
         </div>

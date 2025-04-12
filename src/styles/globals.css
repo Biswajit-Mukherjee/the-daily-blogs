@@ -110,6 +110,7 @@ strong {
 /* Policy, Terms & Disclaimer */
 .policy a,
 .terms a,
-.disclaimer a {
+.disclaimer a,
+.prose a {
   @apply text-primary;
 }
