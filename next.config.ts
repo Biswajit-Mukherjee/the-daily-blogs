@@ -59,6 +59,11 @@ const nextConfig: NextConfig = {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
           },
+          {
+            key: "Permissions-Policy",
+            value:
+              "geolocation=(), camera=(), microphone=(), fullscreen=(self), autoplay=(self), clipboard-read=(self), clipboard-write=(self), payment=(), usb=(), publickey-credentials-get=(self)",
+          },
         ],
       },
     ];
