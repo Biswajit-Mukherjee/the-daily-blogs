@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
 
+/** Variables */
+const IS_DEV = process.env.NODE_ENV === "development";
+
 /** CSP Policy */
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.sanity.io https://www.googletagmanager.com https://www.google-analytics.com;
+  script-src 'self' 'unsafe-inline' ${IS_DEV ? "'unsafe-eval'" : ""} https://cdn.sanity.io https://www.googletagmanager.com https://www.google-analytics.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com https://www.google-analytics.com;
   font-src 'self' https://fonts.gstatic.com;
