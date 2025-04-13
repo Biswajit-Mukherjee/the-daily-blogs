@@ -158,7 +158,7 @@ const ContactUs: NextPage = async () => {
             I would love to hear from you!
           </p>
 
-          <div className="w-full grid gap-5">
+          <div className="w-full grid gap-5 p-4">
             <ContactForm />
 
             <p className="text-muted-foreground font-normal text-base leading-normal antialiased text-center prose mt-2.5 mx-auto mb-0">
