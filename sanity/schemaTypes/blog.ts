@@ -57,7 +57,8 @@ export default {
       name: 'seo',
       title: 'SEO tags',
       type: 'array',
-      description: 'This will be the list of keywords for the blog that will help in SEO. Add as many keywords as possible for best results',
+      description:
+        'This will be the list of keywords for the blog that will help in SEO. Add as many keywords as possible for best results. Do not add any # symbol.',
       of: [{type: 'string'}],
       validation: (rule) => rule.required(),
     }),

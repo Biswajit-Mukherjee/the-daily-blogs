@@ -20,15 +20,15 @@ export async function getMostRecentBlogs(): Promise<SanityTypes.Blog[]> {
 export async function getBlogs(): Promise<SanityTypes.Blog[]> {
   const query = `
     *[_type == 'blog'] | order(_createdAt desc) {
-    "id": _id,
-    "createdAt": _createdAt,
-    "updatedAt": _updatedAt,
-    "slug": slug.current,
-    description,
-    title,
-    image
-}
-  `;
+      "id": _id,
+      "createdAt": _createdAt,
+      "updatedAt": _updatedAt,
+      "slug": slug.current,
+      description,
+      title,
+      image,
+      author -> { name },
+    }`;
 
   const data: SanityTypes.Blog[] = await sanityClient.fetch(query);
   return data;
@@ -45,7 +45,7 @@ export async function getBlog(slug: string): Promise<SanityTypes.BlogDetails> {
     content,
     title,
     image,
-    author-> { name, image },
+    author -> { name, image },
     seo
   }
 `;

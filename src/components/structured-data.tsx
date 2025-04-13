@@ -3,6 +3,7 @@ import Script from "next/script";
 import {
   AboutPage,
   BlogPosting,
+  CollectionPage,
   WebPage,
   WebSite,
   WithContext,
@@ -10,7 +11,9 @@ import {
 import { TContactPage } from "@/@types";
 
 type Props = {
-  data: WithContext<BlogPosting | WebPage | WebSite | AboutPage | TContactPage>;
+  data: WithContext<
+    BlogPosting | WebPage | WebSite | AboutPage | TContactPage | CollectionPage | never
+  >;
 };
 
 const StructuredData: React.FC<Props> = ({ data }): React.JSX.Element => {

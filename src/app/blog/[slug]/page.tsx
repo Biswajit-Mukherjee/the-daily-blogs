@@ -91,7 +91,7 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
       <StructuredData data={schemaData} />
 
       <div className="w-full h-full bg-muted/50 dark:bg-muted flex p-4 items-center justify-center">
-        <div className="w-full max-w-5xl min-h-screen mx-auto select-none">
+        <div className="w-full max-w-5xl min-h-screen mx-auto mt-10 mb-0 select-none">
           <div
             data-uia="blog-date"
             className="w-full mt-4 flex items-center gap-2 text-sm leading-normal font-medium antialiased"
@@ -149,7 +149,9 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
             data-uia="blog-keywords"
           >
             {blog.seo?.map((keyword, index) => (
-              <span key={index}>{`#${keyword.replace(" ", "")}`}</span>
+              <span
+                key={index}
+              >{`#${keyword.trim().toLowerCase().replaceAll(" ", "")}`}</span>
             ))}
           </div>
 

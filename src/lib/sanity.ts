@@ -1,13 +1,13 @@
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
-import { type SanityImageSource } from "@sanity/image-url/lib/types/types"
+import { type SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 /** Create Sanity client */
 export const sanityClient = createClient({
-  apiVersion: "2025-02-09",
-  dataset: "production",
   projectId: "d2lxyr39",
+  dataset: "production",
   useCdn: false,
+  apiVersion: "2025-02-09",
 });
 
 /** Build image url from Sanity */

@@ -2,11 +2,12 @@
   "name": "the-daily-blogs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "postbuild": "next-sitemap",
-    "sitemap": "next-sitemap",
+    "postbuild": "next-sitemap --config next-sitemap.config.mjs",
+    "sitemap": "next-sitemap --config next-sitemap.config.mjs",
     "start": "next start",
     "lint": "next lint"
   },

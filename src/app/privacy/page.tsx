@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "GDPR",
   ],
   alternates: {
-    canonical: new URL(SITE.url),
+    canonical: new URL(SITE.url + '/privacy'),
   },
   robots: "index,noarchive,follow,max-image-preview:large",
   authors: [{ name: SITE.creator }],

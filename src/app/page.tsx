@@ -1,11 +1,45 @@
 import * as React from "react";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import { getMostRecentBlogs } from "@/lib/utils";
 import { type SanityTypes } from "@/@types";
 import BlogCard from "@/components/shared/blog-card";
 import Jumbotron from "@/components/shared/jumbotron";
 import { WebSite, WithContext } from "schema-dts";
 import StructuredData from "@/components/structured-data";
+import { SITE } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title:
+    "The Daily Blogs | Your Source for Fitness, Positivity & Life Transformation",
+  metadataBase: new URL(SITE.url),
+  description:
+    "Welcome to The Daily Blogs – explore powerful insights on fitness, lifestyle, mental health, self-transformation, well-being, and sociology. Discover content that inspires growth, positivity, and purpose.",
+  keywords: [
+    "fitness blog",
+    "mental health",
+    "lifestyle tips",
+    "life transformation",
+    "positive living",
+    "blog",
+    "well-being blog",
+    "sociology articles",
+    "personal growth",
+    "motivation",
+  ],
+  robots: "index,noarchive,follow,max-image-preview:large",
+  openGraph: {
+    title:
+      "The Daily Blogs | Your Source for Fitness, Positivity & Life Transformation",
+    description:
+      "Explore inspiring blog posts on fitness, lifestyle, mental wellness, positivity, and sociology. Discover daily insights for a better you.",
+    images: new URL(SITE.url + "/assets/blogs-cover.webp"),
+    type: "website",
+    locale: "en_IN",
+  },
+  alternates: {
+    canonical: new URL(SITE.url),
+  },
+};
 
 const Home: NextPage = async () => {
   const blogs: SanityTypes.Blog[] = await getMostRecentBlogs();

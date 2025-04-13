@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "The Daily Blogs",
   ],
   alternates: {
-    canonical: new URL(SITE.url),
+    canonical: new URL(SITE.url + '/disclaimer'),
   },
   robots: "index,noarchive,follow,max-image-preview:large",
   authors: [{ name: SITE.creator }],

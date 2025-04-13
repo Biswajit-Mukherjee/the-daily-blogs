@@ -26,8 +26,9 @@ export const metadata: Metadata = {
     "collaborate wellness blog",
     "personal growth blog",
   ],
+  robots: "index,noarchive,follow,max-image-preview:large",
   alternates: {
-    canonical: new URL(SITE.url),
+    canonical: new URL(SITE.url + '/contact-us'),
   },
 };
 

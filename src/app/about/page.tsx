@@ -38,8 +38,9 @@ export const metadata: Metadata = {
     "health and wellness blog",
     "life transformation stories",
   ],
+  robots: "index,noarchive,follow,max-image-preview:large",
   alternates: {
-    canonical: new URL(SITE.url),
+    canonical: new URL(SITE.url + '/about'),
   },
 };
 
