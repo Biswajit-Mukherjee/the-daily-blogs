@@ -1,5 +1,7 @@
 import "@/styles/globals.css";
 import type { Metadata, NextPage } from "next";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter } from "next/font/google";
 import { Bounce, ToastContainer } from "react-toastify";
 import { type NextTypes } from "@/@types";
@@ -63,6 +65,8 @@ const RootLayout: NextPage<NextTypes.Layout> = ({ children }) => {
           theme="colored"
           transition={Bounce}
         />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
