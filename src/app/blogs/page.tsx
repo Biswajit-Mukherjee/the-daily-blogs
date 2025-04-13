@@ -7,7 +7,7 @@ import PageNav from "@/components/ui/page-nav";
 import Loader from "@/components/shared/loader";
 import FilteredBlogs from "@/components/shared/filtered-blogs";
 import BlogsNotFound from "@/components/shared/blogs-not-found";
-import { Metadata } from "next";
+import { Metadata, NextPage } from "next";
 import { SITE } from "@/lib/data";
 import { BlogPosting, CollectionPage, WithContext } from "schema-dts";
 import StructuredData from "@/components/structured-data";
@@ -50,7 +50,7 @@ type Props = Readonly<{
   searchParams?: Promise<any>;
 }>;
 
-const Blogs: React.FC<Props> = async ({ searchParams }) => {
+const Blogs: NextPage<Props> = async ({ searchParams }) => {
   const params = await searchParams;
   const query = params ? params?.query : "";
   const page = params ? params?.page : "1";
