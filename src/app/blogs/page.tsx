@@ -116,7 +116,7 @@ const Blogs: NextPage<Props> = async ({ searchParams }) => {
           nextDisabled={filteredBlogs.length === 0}
         />
 
-        <div data-uia="blogs-container">
+        <div className="mx-auto" data-uia="blogs-container">
           {filteredBlogs.length ? (
             <React.Suspense fallback={<Loader />}>
               <FilteredBlogs query={query} blogs={filteredBlogs} />
@@ -129,7 +129,7 @@ const Blogs: NextPage<Props> = async ({ searchParams }) => {
             )
           )}
 
-          {query && (
+          {query && !filteredBlogs.length && (
             <React.Suspense fallback={<Loader />}>
               <BlogsNotFound query={query} />
             </React.Suspense>

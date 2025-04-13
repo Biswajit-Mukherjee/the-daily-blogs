@@ -10,7 +10,7 @@ const FilteredBlogs: React.FC<Props> = ({ query = "", blogs }) => {
     <div className="w-full max-w-5xl mt-6 mx-auto mb-20">
       {query && (
         <Label className="block text-xl leading-normal font-medium text-center text-muted-foreground">
-          Results for{" "}
+          {blogs.length} results found for{" "}
           <span className="text-foreground font-semibold">{`"${query}"`}</span>
         </Label>
       )}
