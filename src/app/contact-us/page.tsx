@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ],
   robots: "index,noarchive,follow,max-image-preview:large",
   alternates: {
-    canonical: new URL(SITE.url + '/contact-us'),
+    canonical: new URL(SITE.url + "/contact-us"),
   },
 };
 
@@ -102,14 +102,14 @@ const ContactUs: NextPage = async () => {
           </div>
         </section>
 
-        <section className="w-full max-w-6xl mx-auto mt-10 mb-20 relative">
+        <section className="w-full max-w-6xl mx-auto mt-5 mb-20 p-4 relative">
           <div className="w-1/2 h-auto aspect-square top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1] absolute bg-muted/60 rounded-full" />
 
           <div
             data-layout="container"
             className="flex flex-col md:flex-row items-center justify-center gap-10 relative z-10"
           >
-            <div className="w-fit h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
+            <div className="w-full sm:w-[340px] h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
               <div className="w-20 h-20 aspect-square rounded-full bg-primary/10 text-primary flex items-center justify-center">
                 <FaEnvelopesBulk size={40} />
               </div>
@@ -121,7 +121,7 @@ const ContactUs: NextPage = async () => {
               </div>
             </div>
 
-            <div className="w-fit h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
+            <div className="w-full sm:w-[340px] h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
               <div className="w-20 h-20 aspect-square rounded-full bg-primary/10 text-primary flex items-center justify-center">
                 <FaFacebook size={40} />
               </div>
@@ -133,7 +133,7 @@ const ContactUs: NextPage = async () => {
               </div>
             </div>
 
-            <div className="w-fit h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
+            <div className="w-full sm:w-[340px] h-fit aspect-square flex flex-1 flex-col gap-3 p-10 shadow-xl bg-background text-card-foreground rounded-2xl overflow-hidden">
               <div className="w-20 h-20 aspect-square rounded-full bg-primary/10 text-primary flex items-center justify-center">
                 <FaYoutube size={40} />
               </div>

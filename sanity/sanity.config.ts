@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'the-daily-blogs-cms',
 
-  projectId: 'd2lxyr39',
+  projectId: 'q72racpz',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],

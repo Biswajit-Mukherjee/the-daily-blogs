@@ -33,7 +33,7 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'image',
-      description: 'This will be the blog image',
+      description: 'This will be the blog image. For best performance, upload images in WEBP format and in 16:9 aspect ratio.',
       options: {hotspot: true}, // Allows you to crop the image
       validation: (rule) => rule.required(),
     }),

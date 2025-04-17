@@ -122,7 +122,7 @@ const About: NextPage = async () => {
                 </div>
 
                 <Link
-                  className="w-full max-w-full md:max-w-xs flex items-center justify-center gap-5 bg-primary shadow-xl hover:scale-110 transition-transform duration-200 rounded-lg text-white text-xl font-semibold p-5 mt-12"
+                  className="w-full max-w-full md:max-w-xs flex items-center justify-center gap-5 bg-primary shadow-xl hover:scale-105 transition-transform duration-200 rounded-lg text-white text-xl font-semibold p-5 mt-12"
                   href="/contact-us"
                 >
                   <span>Contact Us</span>

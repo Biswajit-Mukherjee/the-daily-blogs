@@ -25,13 +25,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "react-toastify";
 
 const formSchema = z.object({
-  name: z.string().min(1, { message: "Please enter your name." }).max(60, {
+  name: z.string().min(1, { message: "Please provide your full name." }).max(60, {
     message: "Name must not exceed 60 characters.",
   }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  email: z.string().email({ message: "Please provide a valid email address." }),
   subject: z
     .string()
-    .min(1, { message: "Please enter a reason for your message." })
+    .min(1, { message: "Please provide a subject for your message." })
     .max(60, {
       message: "Subject must not exceed 60 characters.",
     }),

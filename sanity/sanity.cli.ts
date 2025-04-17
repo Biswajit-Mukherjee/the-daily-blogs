@@ -1,9 +1,8 @@
 import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
-  studioHost: 'thedailyblogs',
   api: {
-    projectId: 'd2lxyr39',
+    projectId: 'q72racpz',
     dataset: 'production',
   },
   /**
@@ -11,4 +10,5 @@ export default defineCliConfig({
    * Learn more at https://www.sanity.io/docs/cli#auto-updates
    */
   autoUpdates: true,
+  studioHost: 'thedailyblogscms',
 })

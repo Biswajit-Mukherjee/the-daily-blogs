@@ -131,7 +131,7 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
           <div data-uia="blog-image" className="w-full mt-8 relative">
             <AspectRatio ratio={16 / 9}>
               <Image
-                className="w-full h-full object-cover aspect-auto"
+                className="w-full h-full object-cover bg-top aspect-auto"
                 blurDataURL={urlFor(blog.image).url()}
                 src={urlFor(blog.image).url()}
                 placeholder="blur"
