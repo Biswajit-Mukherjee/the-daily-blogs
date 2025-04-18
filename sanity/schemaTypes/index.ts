@@ -7,6 +7,7 @@ import terms from './terms'
 import disclaimer from './disclaimer'
 import contact from './contact'
 import homepage from './homepage'
+import navlink from './navlink'
 
 export const schemaTypes = [
   author,
@@ -18,4 +19,5 @@ export const schemaTypes = [
   disclaimer,
   contact,
   homepage,
+  navlink,
 ]

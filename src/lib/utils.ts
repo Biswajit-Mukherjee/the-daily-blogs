@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { sanityClient } from "./sanity";
-import { type SanityTypes } from "@/@types";
+import { Navlinks, type SanityTypes } from "@/@types";
 import { MOST_RECENT_BLOGS, NUMBER_OF_BLOGS_PER_PAGE } from "./data";
 
 /** Merge tailwind classes */
@@ -38,17 +38,16 @@ export async function getBlogs(): Promise<SanityTypes.Blog[]> {
 export async function getBlog(slug: string): Promise<SanityTypes.BlogDetails> {
   const query = `
     *[_type == 'blog' && slug.current == $slug][0] {
-    "id": _id,
-    "createdAt": _createdAt,
-    "slug": slug.current,
-    description,
-    content,
-    title,
-    image,
-    author -> { name, image },
-    seo
-  }
-`;
+      "id": _id,
+      "createdAt": _createdAt,
+      "slug": slug.current,
+      description,
+      content,
+      title,
+      image,
+      author -> { name, image },
+      seo
+    }`;
 
   const data: SanityTypes.BlogDetails = await sanityClient.fetch(query, {
     slug,
@@ -60,15 +59,14 @@ export async function getBlog(slug: string): Promise<SanityTypes.BlogDetails> {
 export async function getProfile() {
   const query = `
     *[_type == 'profile'] {
-    name,
-    jobTitle,
-    description,
-    image,
-    email,
-    facebook,
-    youtube
-}
-  `;
+      name,
+      jobTitle,
+      description,
+      image,
+      email,
+      facebook,
+      youtube
+    }`;
 
   const data: SanityTypes.Profile[] = await sanityClient.fetch(query);
   return data[0];
@@ -91,8 +89,7 @@ export async function getBlogsByQuery(
     description,
     title,
     image
-}
-  `
+  }`
     : `
     *[_type == 'blog'] | order(_createdAt desc) [${startIndex}...${endIndex}] {
     "id": _id,
@@ -101,8 +98,7 @@ export async function getBlogsByQuery(
     description,
     title,
     image
-}
-  `;
+  }`;
 
   const data: SanityTypes.Blog[] = await sanityClient.fetch(query);
   return data;
@@ -112,12 +108,11 @@ export async function getBlogsByQuery(
 export async function getSiteInfo() {
   const query = `
     *[_type == 'about'] {
-    title,
-    subtitle,
-    description,
-    largeDescription
-}
-  `;
+      title,
+      subtitle,
+      description,
+      largeDescription
+    }`;
 
   const data: SanityTypes.AboutSite[] = await sanityClient.fetch(query);
   return data[0];
@@ -127,12 +122,11 @@ export async function getSiteInfo() {
 export async function getPrivacyPolicy() {
   const query = `
     *[_type == 'privacy'] {
-  "createdAt": _createdAt,
-  "updatedAt": _updatedAt,
-  title,
-  description
-}
-  `;
+      "createdAt": _createdAt,
+      "updatedAt": _updatedAt,
+      title,
+      description
+    }`;
 
   const data: SanityTypes.PrivacyPolicy[] = await sanityClient.fetch(query);
   return data[0];
@@ -142,11 +136,10 @@ export async function getPrivacyPolicy() {
 export async function getTermsAndConditions() {
   const query = `
     *[_type == 'terms'] {
-  "createdAt": _createdAt,
-  title,
-  description
-}
-  `;
+      "createdAt": _createdAt,
+      title,
+      description
+    }`;
 
   const data: SanityTypes.Terms[] = await sanityClient.fetch(query);
   return data[0];
@@ -156,11 +149,10 @@ export async function getTermsAndConditions() {
 export async function getDisclaimer() {
   const query = `
     *[_type == 'disclaimer'] {
-  "createdAt": _createdAt,
-  title,
-  description
-}
-  `;
+      "createdAt": _createdAt,
+      title,
+      description
+    }`;
 
   const data: SanityTypes.Disclaimer[] = await sanityClient.fetch(query);
   return data[0];
@@ -170,11 +162,10 @@ export async function getDisclaimer() {
 export async function getContactUsDetails() {
   const query = `
     *[_type == 'contact'] {
-  title,
-  subtitle,
-  description
-}
-  `;
+      title,
+      subtitle,
+      description
+    }`;
 
   const data: SanityTypes.Contact[] = await sanityClient.fetch(query);
   return data[0];
@@ -187,9 +178,20 @@ export async function getHomepageDetails() {
       title,
       image,
       intro
-    }
-  `;
+    }`;
 
   const data: SanityTypes.Homepage[] = await sanityClient.fetch(query);
   return data[0];
+}
+
+/** Fetch homepage navlinks from Sanity */
+export async function getHomepageNavlinks() {
+  const query = `
+    *[_type == 'navlink'] {
+      label,
+      navlinks
+    }`;
+
+  const data = await sanityClient.fetch(query);
+  return data[0] as Navlinks;
 }

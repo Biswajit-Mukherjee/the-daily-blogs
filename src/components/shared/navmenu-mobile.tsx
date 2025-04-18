@@ -4,12 +4,15 @@ import {
   DrawerContent,
   DrawerTitle,
   DrawerTrigger,
-} from "../ui/drawer";
-import { Button } from "../ui/button";
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import NavMenu from "./navmenu";
+import NavMenu from "@/components/shared/navmenu";
+import { Navlinks } from "@/@types";
 
-const NavMenuMobile: React.FC = () => {
+type Props = Readonly<{ nav: Navlinks }>;
+
+const NavMenuMobile: React.FC<Props> = ({ nav }) => {
   return (
     <div className="block md:hidden mr-2.5">
       <Drawer direction="left">
@@ -25,7 +28,11 @@ const NavMenuMobile: React.FC = () => {
         </DrawerTrigger>
         <DrawerContent className="w-full max-w-[280px] h-full rounded-none">
           <DrawerTitle className="sr-only">Mobile Navmenu</DrawerTitle>
-          <NavMenu listClassName="w-full px-5 py-10 grid gap-6" />
+          <NavMenu
+            listClassName="w-full px-5 py-10 grid gap-6"
+            navlinks={nav.navlinks}
+            label={nav.label}
+          />
         </DrawerContent>
       </Drawer>
     </div>

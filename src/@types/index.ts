@@ -96,3 +96,13 @@ export type TContactPage = ContactPage &
       url: string;
     };
   }>;
+
+// Navlink types
+export type Navlinks = Readonly<{ label: string; navlinks: Navlink[] }>;
+
+export type Navlink = Readonly<{
+  _key: string;
+  label: string;
+  pathname: string;
+  href: string;
+}>;
