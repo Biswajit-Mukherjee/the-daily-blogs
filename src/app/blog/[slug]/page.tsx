@@ -167,11 +167,13 @@ const BlogDetails: NextPage<Props> = async ({
                 </p>
               </Link>
 
-              <div className="flex flex-row items-center gap-1 text-xs sm:text-sm font-normal leading-normal text-muted-foreground antialiased">
-                <span>{readingTime}</span>
-                <span className="w-1 h-1 rounded-full bg-muted-foreground mx-1" />
-                <span>{numberOfViews}</span>
-              </div>
+              {readingTime && numberOfViews && (
+                <div className="flex flex-row items-center gap-1 text-xs sm:text-sm font-normal leading-normal text-muted-foreground antialiased">
+                  <span>{readingTime}</span>
+                  <span className="w-1 h-1 rounded-full bg-muted-foreground mx-1" />
+                  <span>{numberOfViews}</span>
+                </div>
+              )}
             </div>
 
             <div data-uia="blog-image" className="w-full mt-8 relative">

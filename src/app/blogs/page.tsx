@@ -103,7 +103,7 @@ const Blogs: NextPage<Props> = async ({ searchParams }) => {
     <>
       <StructuredData data={schemaData} />
 
-      <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10 px-4 py-10">
+      <main className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10 px-4 py-10">
         <div className="w-full max-w-[440px] mx-auto" data-uia="search">
           <SearchBox searchQuery={query} />
         </div>
@@ -116,7 +116,10 @@ const Blogs: NextPage<Props> = async ({ searchParams }) => {
           nextDisabled={filteredBlogs.length === 0}
         />
 
-        <div className="mx-auto" data-uia="blogs-container">
+        <section
+          className="w-full max-w-5xl min-h-[600px] mx-auto"
+          data-uia="blogs-container"
+        >
           {filteredBlogs.length ? (
             <React.Suspense fallback={<Loader />}>
               <FilteredBlogs query={query} blogs={filteredBlogs} />
@@ -134,8 +137,8 @@ const Blogs: NextPage<Props> = async ({ searchParams }) => {
               <BlogsNotFound query={query} />
             </React.Suspense>
           )}
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 };

@@ -69,8 +69,8 @@ const SearchBox: React.FC<Props> = ({ searchQuery }) => {
               <FormLabel className="sr-only">Search blogs</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-background w-full min-h-10 flex-1 rounded-sm focus-visible:ring-2 ring-offset-2"
-                  placeholder="Search blogs"
+                  className="bg-background w-full min-h-12 flex-1 rounded-sm focus-visible:ring-2 ring-offset-2"
+                  placeholder="Search blogs, keywords and more"
                   style={{ marginTop: 0 }}
                   type="search"
                   {...field}
@@ -84,7 +84,7 @@ const SearchBox: React.FC<Props> = ({ searchQuery }) => {
           id="al"
           type="submit"
           aria-label="Search Button"
-          className="min-h-10 rounded-sm"
+          className="min-h-12 rounded-sm"
           disabled={!searchValue}
           aria-disabled={!searchValue}
         >

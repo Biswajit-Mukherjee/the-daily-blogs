@@ -7,6 +7,7 @@ import { type SanityTypes } from "@/@types";
 import BlogCard from "@/components/shared/blog-card";
 import Jumbotron from "@/components/shared/jumbotron";
 import StructuredData from "@/components/structured-data";
+import AllBlogsButton from "@/components/shared/all-blogs-btn";
 import { urlFor } from "@/lib/sanity";
 import { SITE } from "@/lib/data";
 
@@ -72,13 +73,15 @@ const Home: NextPage = async () => {
     <>
       <StructuredData data={schemaData} />
 
-      <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10 px-4 py-10">
-        <Jumbotron
-          title={home.title}
-          image={urlFor(home.image).url()}
-        />
+      <main className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10 px-4 py-10">
+        <section className="w-full">
+          <Jumbotron title={home.title} image={urlFor(home.image).url()} />
+        </section>
 
-        <div data-uia="blogs-container" className="w-full mt-10 mx-auto mb-20">
+        <section
+          data-uia="blogs-container"
+          className="w-full mt-8 mx-auto mb-6"
+        >
           <div className="w-full max-w-5xl text-center mt-0 mx-auto mb-16 text-foreground prose dark:prose-invert text-base leading-normal antialiased">
             <PortableText value={home.intro} />
           </div>
@@ -97,8 +100,15 @@ const Home: NextPage = async () => {
                 <BlogCard key={blog.id} blog={blog} />
               ))}
           </div>
-        </div>
-      </div>
+        </section>
+
+        <section
+          data-uia="load-all-blogs"
+          className="w-full max-w-5xl mt-0 mx-auto mb-16 flex items-center justify-center"
+        >
+          <AllBlogsButton />
+        </section>
+      </main>
     </>
   );
 };
