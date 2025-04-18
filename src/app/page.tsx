@@ -1,11 +1,13 @@
 import * as React from "react";
 import { Metadata, NextPage } from "next";
-import { getMostRecentBlogs } from "@/lib/utils";
+import { PortableText } from "next-sanity";
+import { WebSite, WithContext } from "schema-dts";
+import { getHomepageDetails, getMostRecentBlogs } from "@/lib/utils";
 import { type SanityTypes } from "@/@types";
 import BlogCard from "@/components/shared/blog-card";
 import Jumbotron from "@/components/shared/jumbotron";
-import { WebSite, WithContext } from "schema-dts";
 import StructuredData from "@/components/structured-data";
+import { urlFor } from "@/lib/sanity";
 import { SITE } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -42,6 +44,7 @@ export const metadata: Metadata = {
 };
 
 const Home: NextPage = async () => {
+  const home: SanityTypes.Homepage = await getHomepageDetails();
   const blogs: SanityTypes.Blog[] = await getMostRecentBlogs();
 
   const schemaData: WithContext<WebSite> = {
@@ -68,15 +71,15 @@ const Home: NextPage = async () => {
       <StructuredData data={schemaData} />
 
       <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10 px-4 py-10">
-        <Jumbotron />
+        <Jumbotron
+          title={home.title}
+          image={urlFor(home.image).url()}
+        />
 
         <div data-uia="blogs-container" className="w-full mt-10 mx-auto mb-20">
-          <p className="w-full max-w-5xl text-center mt-0 mx-auto mb-16 text-foreground text-base leading-normal antialiased">
-            Welcome to <strong>The Daily Blogs</strong> — your one-stop shop to
-            explore the latest and greatest blogs on fitness, lifestyle, mental health,
-            self-transformation, well-being, and sociology. Discover content
-            that inspires growth, positivity, and purpose.
-          </p>
+          <div className="w-full max-w-5xl text-center mt-0 mx-auto mb-16 text-foreground prose dark:prose-invert text-base leading-normal antialiased">
+            <PortableText value={home.intro} />
+          </div>
 
           <div className="w-full max-w-xs mt-0 mx-auto mb-8 relative">
             <div className="w-fit mx-auto">

@@ -179,3 +179,17 @@ export async function getContactUsDetails() {
   const data: SanityTypes.Contact[] = await sanityClient.fetch(query);
   return data[0];
 }
+
+/** Fetch homepage details from Sanity */
+export async function getHomepageDetails() {
+  const query = `
+    *[_type == 'home'] {
+      title,
+      image,
+      intro
+    }
+  `;
+
+  const data: SanityTypes.Homepage[] = await sanityClient.fetch(query);
+  return data[0];
+}

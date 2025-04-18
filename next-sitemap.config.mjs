@@ -6,10 +6,10 @@ import { createClient } from "next-sanity";
 
 /** Create Sanity client */
 export const sanity = createClient({
-  projectId: "d2lxyr39",
+  projectId: "q72racpz",
   dataset: "production",
   useCdn: false,
-  apiVersion: "2025-02-09",
+  apiVersion: "2025-04-18",
 });
 
 const config = {

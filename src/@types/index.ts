@@ -78,6 +78,12 @@ export namespace SanityTypes {
     subtitle: never;
     description: never;
   }>;
+
+  export type Homepage = Readonly<{
+    title: string;
+    image: SanityImageAssetDocument;
+    intro: never;
+  }>;
 }
 
 // Schema data types

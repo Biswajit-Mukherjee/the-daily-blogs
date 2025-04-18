@@ -6,5 +6,16 @@ import privacy from './privacy'
 import terms from './terms'
 import disclaimer from './disclaimer'
 import contact from './contact'
+import homepage from './homepage'
 
-export const schemaTypes = [author, blog, profile, about, privacy, terms, disclaimer, contact]
+export const schemaTypes = [
+  author,
+  blog,
+  profile,
+  about,
+  privacy,
+  terms,
+  disclaimer,
+  contact,
+  homepage,
+]
