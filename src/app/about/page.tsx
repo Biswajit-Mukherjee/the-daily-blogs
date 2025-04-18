@@ -2,6 +2,7 @@ import * as React from "react";
 import { Metadata, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { AboutPage, WithContext } from "schema-dts";
 import { MoveRight } from "lucide-react";
 import { GrMail } from "react-icons/gr";
 import { FaFacebook } from "react-icons/fa";
@@ -13,7 +14,6 @@ import { type SanityTypes } from "@/@types";
 import { PortableText } from "next-sanity";
 import { SITE } from "@/lib/data";
 import StructuredData from "@/components/structured-data";
-import { AboutPage, WithContext } from "schema-dts";
 
 export const metadata: Metadata = {
   title:
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   ],
   robots: "index,noarchive,follow,max-image-preview:large",
   alternates: {
-    canonical: new URL(SITE.url + '/about'),
+    canonical: new URL(SITE.url + "/about"),
   },
 };
 
@@ -156,10 +156,11 @@ const About: NextPage = async () => {
           </section>
 
           <section
-            className="w-full max-w-6xl mx-auto mt-20"
+            id="aboutMe"
             data-layout="section"
+            className="w-full max-w-6xl mx-auto"
           >
-            <h1 className="text-center text-foreground text-3xl sm:text-4xl md:text-5xl font-bold leading-normal antialiased">
+            <h1 className="w-full pt-20 text-center text-foreground text-3xl sm:text-4xl md:text-5xl font-bold leading-normal antialiased">
               About me
             </h1>
 

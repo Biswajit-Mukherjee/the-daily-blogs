@@ -30,13 +30,13 @@ const NavMenu: React.FC<Props> = ({
             role="listitem"
             key={navlink._key}
             aria-label={navlink.label.toLowerCase().replaceAll(" ", "-")}
-            className="w-full hover:text-primary active:text-primary hover:bg-muted active:bg-muted md:hover:bg-inherit md:active:bg-inherit cursor-pointer"
+            className="w-full rounded-sm overflow-hidden hover:bg-primary/10 hover:text-primary active:text-primary cursor-pointer"
           >
             <Link
               className={cn(
-                "block text-center",
+                "w-full h-full block border-b-2 border-transparent text-center p-2.5",
                 pathname === navlink.pathname &&
-                  "text-primary font-semibold border-b-2 border-primary p-2.5"
+                  "text-primary font-semibold border-primary"
               )}
               href={navlink.href}
             >

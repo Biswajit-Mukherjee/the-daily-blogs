@@ -22,6 +22,10 @@ export namespace SanityTypes {
     description: string;
     image: SanityImageAssetDocument;
     author: { name: string };
+    seo: string | string[];
+    numberOfCharacters: number;
+    estimatedWordCount: number;
+    estimatedReadingTimeInMins: number;
   }>;
 
   export type Profile = Readonly<{

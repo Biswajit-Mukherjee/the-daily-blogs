@@ -10,6 +10,8 @@ import StructuredData from "@/components/structured-data";
 import { urlFor } from "@/lib/sanity";
 import { SITE } from "@/lib/data";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   title:
     "The Daily Blogs | Your Source for Fitness, Positivity & Life Transformation",

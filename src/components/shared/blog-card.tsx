@@ -1,5 +1,4 @@
 import * as React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import dayjs from "dayjs";
 import { CalendarIcon } from "lucide-react";
@@ -14,6 +13,7 @@ import {
 import { urlFor } from "@/lib/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import ReadMoreButton from "@/components/shared/read-more-btn";
 
 export type BlogCardProps = Readonly<{ blog: SanityTypes.Blog }>;
 
@@ -48,18 +48,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
           {blog.description}
         </CardDescription>
       </CardHeader>
-      <CardContent className="w-full flex items-center justify-between p-0">
-        <Link
-          aria-label={blog.title}
-          className="text-primary hover:underline underline-offset-2 underline-primary font-semibold antialiased"
-          href={`/blog/${blog.slug}`}
-        >
-          Read more
-          <span className="sr-only">{blog.title}</span>
-        </Link>
-        <div className="flex items-center gap-2 text-sm leading-normal font-medium antialiased">
+      <CardContent className="w-full flex items-center justify-between pt-1 px-0 pb-2">
+        <ReadMoreButton title={blog.title} url={`/blog/${blog.slug}`} />
+
+        <div className="flex flex-row items-center gap-2">
           <CalendarIcon size={20} />
-          <div>{dayjs(blog.createdAt).format("MMM D, YYYY")}</div>
+          <div className="flex-1 text-muted-foreground text-sm leading-normal antialiased">
+            {dayjs(blog.createdAt).format("MMM D, YYYY")}
+          </div>
         </div>
       </CardContent>
     </Card>

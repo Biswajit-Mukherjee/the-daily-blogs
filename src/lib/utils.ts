@@ -46,7 +46,10 @@ export async function getBlog(slug: string): Promise<SanityTypes.BlogDetails> {
       title,
       image,
       author -> { name, image },
-      seo
+      seo,
+      "numberOfCharacters": length(pt::text(content)),
+      "estimatedWordCount": round(length(pt::text(content)) / 5),
+      "estimatedReadingTimeInMins": round(length(pt::text(content)) / 5 / 180 ),
     }`;
 
   const data: SanityTypes.BlogDetails = await sanityClient.fetch(query, {

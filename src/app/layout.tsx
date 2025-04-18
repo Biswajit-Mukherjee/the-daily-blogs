@@ -11,9 +11,10 @@ import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";
 
 // If loading a variable font, you don't need to specify the font weight
-const inter = Inter({
+const ff = Inter({
   subsets: ["latin"],
   display: "swap",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export const revalidate = 3600; // revalidate at most every hour
 const RootLayout: NextPage<NextTypes.Layout> = ({ children }) => {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${ff.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

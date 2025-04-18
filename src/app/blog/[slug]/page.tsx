@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import * as React from "react";
-import type { Metadata } from "next";
+import type { Metadata, NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import dayjs from "dayjs";
 import { redirect } from "next/navigation";
 import { CalendarIcon } from "lucide-react";
@@ -12,9 +13,13 @@ import { getBlog } from "@/lib/utils";
 import { type SanityTypes } from "@/@types";
 import { SITE } from "@/lib/data";
 import { urlFor } from "@/lib/sanity";
-import StructuredData from "@/components/structured-data";
+import { redis } from "@/lib/redis";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import StructuredData from "@/components/structured-data";
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
+import BackButton from "@/components/shared/back-btn";
+import { ReportView } from "@/components/shared/view";
 
 type Props = Readonly<{ params: Promise<any> }>;
 
@@ -44,7 +49,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const BlogDetails = async ({ params }: { params: Promise<any> }) => {
+const BlogDetails: NextPage<Props> = async ({
+  params,
+}: {
+  params: Promise<any>;
+}) => {
   const pageParams = await params;
 
   if (!pageParams) {
@@ -57,6 +66,19 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
   if (!blog) {
     redirect("/");
   }
+
+  /** Calculate number of times blog is viewed */
+  const views =
+    (await redis.get<number>(
+      ["pageviews", "posts", pageParams.slug].join(":")
+    )) ?? 0;
+  const numberOfViews = views === 1 ? `${views} view` : `${views} views`;
+
+  /** Calculate estimated blog reading time */
+  const readingTime =
+    +blog.estimatedReadingTimeInMins === 1
+      ? `${blog.estimatedReadingTimeInMins} min read`
+      : `${blog.estimatedReadingTimeInMins} mins read`;
 
   const schemaData: WithContext<BlogPosting> = {
     "@context": "https://schema.org",
@@ -90,61 +112,86 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
     <>
       <StructuredData data={schemaData} />
 
-      <div className="w-full h-full bg-muted/50 dark:bg-muted flex p-4 items-center justify-center">
-        <div className="w-full max-w-5xl min-h-screen mx-auto mt-10 mb-0 select-none">
-          <div
+      <ReportView slug={blog.slug} />
+
+      <main className="w-full h-full bg-muted/50 dark:bg-muted flex flex-col p-4 items-center justify-center">
+        <MaxWidthWrapper className="min-h-screen mt-10 mb-0 select-none">
+          <section aria-label="back-nav" className="w-full mt-0 mx-auto mb-10">
+            <BackButton />
+          </section>
+
+          <section
             data-uia="blog-date"
-            className="w-full mt-4 flex items-center gap-2 text-sm leading-normal font-medium antialiased"
+            className="w-full mt-4 flex items-center gap-2.5"
           >
-            <CalendarIcon className="text-primary" size={24} />
-            <div>{dayjs(blog.createdAt).format("MMMM D, YYYY")}</div>
-          </div>
-
-          <h1
-            data-uia="blog-title"
-            className="w-full mt-6 text-wrap text-2xl sm:text-3xl md:text-4xl text-foreground font-black leading-normal antialiased"
-          >
-            {blog.title}
-          </h1>
-
-          <div
-            data-uia="blog-user"
-            className="w-full mt-10 flex items-center justify-center relative"
-          >
-            <div className="w-fit flex items-center justify-center gap-2 px-1.5">
-              <Avatar className="border border-border">
-                <AvatarImage
-                  className="object-cover"
-                  src={urlFor(blog.author?.image).url()}
-                  alt={blog.author?.name}
-                />
-                <AvatarFallback>
-                  {blog.author?.name[0].toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <p className="text-lg leading-normal font-semibold antialiased align-middle">
-                {blog.author?.name}
+            <CalendarIcon className="text-primary" size={30} />
+            <div className="w-full flex-1">
+              <p className="text-muted-foreground text-xs font-normal leading-normal antialiased">
+                Posted on
+              </p>
+              <p className="text-foreground text-sm font-medium leading-normal antialiased">
+                {dayjs(blog.createdAt).format("MMM D, YYYY")}
               </p>
             </div>
-          </div>
+          </section>
 
-          <div data-uia="blog-image" className="w-full mt-8 relative">
-            <AspectRatio ratio={16 / 9}>
-              <Image
-                className="w-full h-full object-cover bg-top aspect-auto"
-                blurDataURL={urlFor(blog.image).url()}
-                src={urlFor(blog.image).url()}
-                placeholder="blur"
-                title={blog.title}
-                alt={blog.title}
-                quality={80}
-                priority
-                fill
-              />
-            </AspectRatio>
-          </div>
+          <section className="w-full">
+            <h1
+              data-uia="blog-title"
+              className="w-full mt-6 text-wrap text-2xl sm:text-3xl md:text-4xl text-foreground font-black leading-normal antialiased"
+            >
+              {blog.title}
+            </h1>
 
-          <div
+            <div
+              data-uia="blog-user"
+              aria-label="blog-user"
+              className="w-full mt-10 flex flex-row items-center justify-between relative"
+            >
+              <Link
+                href="/about#aboutMe"
+                className="w-fit flex items-center justify-center gap-2"
+              >
+                <Avatar className="border border-border">
+                  <AvatarImage
+                    className="object-cover"
+                    src={urlFor(blog.author?.image).url()}
+                    alt={blog.author?.name}
+                  />
+                  <AvatarFallback>
+                    {blog.author?.name[0].toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <p className="w-20 sm:w-fit align-middle text-foreground text-base sm:text-lg font-medium antialiased">
+                  {blog.author?.name}
+                </p>
+              </Link>
+
+              <div className="flex flex-row items-center gap-1 text-xs sm:text-sm font-normal leading-normal text-muted-foreground antialiased">
+                <span>{readingTime}</span>
+                <span className="w-1 h-1 rounded-full bg-muted-foreground mx-1" />
+                <span>{numberOfViews}</span>
+              </div>
+            </div>
+
+            <div data-uia="blog-image" className="w-full mt-8 relative">
+              <AspectRatio ratio={16 / 9}>
+                <Image
+                  className="w-full h-full object-cover bg-top aspect-auto"
+                  blurDataURL={urlFor(blog.image).url()}
+                  src={urlFor(blog.image).url()}
+                  placeholder="blur"
+                  title={blog.title}
+                  alt={blog.title}
+                  quality={80}
+                  priority
+                  fill
+                />
+              </AspectRatio>
+            </div>
+          </section>
+
+          <section
             className="px-0 py-6 text-muted-foreground/80 leading-normal antialiased lowercase flex flex-row flex-wrap items-center justify-center gap-3"
             data-uia="blog-keywords"
           >
@@ -153,23 +200,25 @@ const BlogDetails = async ({ params }: { params: Promise<any> }) => {
                 key={index}
               >{`#${keyword.trim().toLowerCase().replaceAll(" ", "")}`}</span>
             ))}
-          </div>
+          </section>
 
-          <div
-            data-uia="blog-description"
-            className="w-full mt-6 text-center text-muted-foreground text-lg font-medium leading-normal antialiased"
-          >
-            {blog.description}
-          </div>
+          <section className="w-full">
+            <div
+              data-uia="blog-description"
+              className="w-full mt-6 text-center text-muted-foreground text-lg font-medium leading-normal antialiased"
+            >
+              {blog.description}
+            </div>
 
-          <article
-            data-uia="blog-content"
-            className="w-full max-w-full mt-16 mx-0 mb-24 prose dark:prose-invert text-foreground leading-normal antialiased"
-          >
-            <PortableText value={blog.content} />
-          </article>
-        </div>
-      </div>
+            <article
+              data-uia="blog-content"
+              className="w-full max-w-full mt-16 mx-0 mb-24 prose dark:prose-invert text-foreground leading-normal antialiased"
+            >
+              <PortableText value={blog.content} />
+            </article>
+          </section>
+        </MaxWidthWrapper>
+      </main>
     </>
   );
 };
