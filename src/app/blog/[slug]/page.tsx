@@ -72,7 +72,12 @@ const BlogDetails: NextPage<Props> = async ({
     (await redis.get<number>(
       ["pageviews", "posts", pageParams.slug].join(":")
     )) ?? 0;
-  const numberOfViews = views === 1 ? `${views} view` : `${views} views`;
+  const numberOfViews =
+    views <= 99
+      ? views === 1
+        ? `${views} view`
+        : `${views} views`
+      : "99+ views";
 
   /** Calculate estimated blog reading time */
   const readingTime =
