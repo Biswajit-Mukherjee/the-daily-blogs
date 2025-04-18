@@ -71,15 +71,15 @@ const Home: NextPage = async () => {
         <Jumbotron />
 
         <div data-uia="blogs-container" className="w-full mt-10 mx-auto mb-20">
-          <p className="w-full max-w-5xl text-center m-auto mb-16 text-foreground text-base leading-normal antialiased">
+          <p className="w-full max-w-5xl text-center mt-0 mx-auto mb-16 text-foreground text-base leading-normal antialiased">
             Welcome to <strong>The Daily Blogs</strong> — your one-stop shop to
             explore the latest and greatest blogs on fitness, lifestyle, mental health,
             self-transformation, well-being, and sociology. Discover content
             that inspires growth, positivity, and purpose.
           </p>
 
-          <div className="w-full max-w-xs mx-auto mb-8 relative">
-            <div className="w-fit p-2 mx-auto">
+          <div className="w-full max-w-xs mt-0 mx-auto mb-8 relative">
+            <div className="w-fit mx-auto">
               <h2 className="text-2xl sm:text-3xl md:text-4xl text-center font-bold text-nowrap antialiased">
                 Most recent blogs
               </h2>
