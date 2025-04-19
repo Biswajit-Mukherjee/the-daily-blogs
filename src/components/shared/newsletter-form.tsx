@@ -81,6 +81,7 @@ const NewsLetterForm: React.FC = () => {
                   <Input
                     className="bg-background w-full min-h-12 shadow-none flex-1 rounded-sm aria-invalid:border-destructive focus-visible:ring-2 ring-offset-2 text-base"
                     placeholder="Email address"
+                    aria-label="email"
                     disabled={submitting}
                     type="email"
                     {...field}

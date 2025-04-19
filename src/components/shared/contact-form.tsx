@@ -88,12 +88,14 @@ const ContactForm: React.FC = () => {
           name="name"
           render={({ field }) => (
             <FormItem className="flex flex-col flex-1">
-              <FormLabel className="text-muted-foreground text-base font-normal antialiased">
-                Your name
+              <FormLabel className="text-foreground text-base font-normal antialiased">
+                Name
               </FormLabel>
               <FormControl>
                 <Input
                   className="bg-background w-full min-h-12 shadow-none flex-1 aria-invalid:border-destructive rounded-sm focus-visible:ring-2 ring-offset-2 text-base"
+                  placeholder="Enter your full name"
+                  aria-label="name"
                   disabled={submitting}
                   type="text"
                   {...field}
@@ -109,12 +111,14 @@ const ContactForm: React.FC = () => {
           name="email"
           render={({ field }) => (
             <FormItem className="flex flex-col flex-1">
-              <FormLabel className="text-muted-foreground text-base font-normal antialiased">
-                Your email
+              <FormLabel className="text-foreground text-base font-normal antialiased">
+                Email address
               </FormLabel>
               <FormControl>
                 <Input
                   className="bg-background w-full min-h-12 shadow-none flex-1 rounded-sm aria-invalid:border-destructive focus-visible:ring-2 ring-offset-2 text-base"
+                  placeholder="Enter your email address"
+                  aria-label="email"
                   disabled={submitting}
                   type="email"
                   {...field}
@@ -130,12 +134,14 @@ const ContactForm: React.FC = () => {
           name="subject"
           render={({ field }) => (
             <FormItem className="flex flex-col flex-1">
-              <FormLabel className="text-muted-foreground text-base font-normal antialiased">
+              <FormLabel className="text-foreground text-base font-normal antialiased">
                 Subject
               </FormLabel>
               <FormControl>
                 <Input
                   className="bg-background w-full min-h-12 shadow-none flex-1 rounded-sm aria-invalid:border-destructive focus-visible:ring-2 ring-offset-2 text-base"
+                  placeholder="What is your message about?"
+                  aria-label="subject"
                   disabled={submitting}
                   type="text"
                   {...field}
@@ -151,12 +157,14 @@ const ContactForm: React.FC = () => {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-muted-foreground text-base font-normal antialiased">
-                Your message
+              <FormLabel className="text-foreground text-base font-normal antialiased">
+                Message
               </FormLabel>
               <FormControl>
                 <Textarea
                   className="bg-background w-full min-h-40 shadow-none aria-invalid:border-destructive focus-visible:ring-2 ring-offset-2"
+                  placeholder="Enter your message"
+                  aria-label="message"
                   disabled={submitting}
                   {...field}
                 />
@@ -172,28 +180,36 @@ const ContactForm: React.FC = () => {
           name="subscriber"
           render={({ field }) => (
             <FormItem className="flex flex-col flex-1">
-              <FormLabel className="text-muted-foreground text-base font-normal antialiased">
+              <FormLabel className="text-foreground text-base font-normal antialiased">
                 Are you a subscriber on my youtube? (optional)
               </FormLabel>
+
               <Select
                 disabled={submitting}
                 onValueChange={field.onChange}
                 defaultValue={field.value}
               >
                 <FormControl className="bg-background w-full min-h-12 shadow-none flex-1 rounded-sm focus-visible:ring-2 ring-offset-2 text-base">
-                  <SelectTrigger>
-                    <SelectValue placeholder="—Please choose an option—" />
+                  <SelectTrigger className="text-sm font-normal antialiased">
+                    <SelectValue
+                      aria-label="default-value"
+                      placeholder="Please choose an option"
+                    />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+
+                <SelectContent aria-label="subscriber-select">
                   <SelectItem
-                    className="text-base font-normal antialiased"
+                    className="w-full my-2 text-sm font-normal antialiased cursor-pointer"
+                    aria-label="option — yes"
                     value="yes"
                   >
                     Yes
                   </SelectItem>
+
                   <SelectItem
-                    className="text-base font-normal antialiased"
+                    className="w-full my-2 text-sm font-normal antialiased cursor-pointer"
+                    aria-label="option — no"
                     value="no"
                   >
                     No
