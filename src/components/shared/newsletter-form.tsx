@@ -71,10 +71,7 @@ const NewsLetterForm: React.FC = () => {
       )}
 
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full grid"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full grid">
           <FormField
             control={form.control}
             name="email"
