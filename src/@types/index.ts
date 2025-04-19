@@ -51,13 +51,6 @@ export namespace SanityTypes {
       seo: string[] | null | undefined;
     }>;
 
-  export type AboutSite = Readonly<{
-    title: string;
-    subtitle: never;
-    description: never;
-    largeDescription: never;
-  }>;
-
   export type PrivacyPolicy = Readonly<{
     title: string;
     description: never;
@@ -77,10 +70,17 @@ export namespace SanityTypes {
     createdAt: Date;
   }>;
 
+  export type AboutSite = Readonly<{
+    title: string;
+    description: never;
+    largeDescription: never;
+    hero: SanityImageAssetDocument;
+  }>;
+
   export type Contact = Readonly<{
     title: string;
-    subtitle: never;
     description: never;
+    hero: SanityImageAssetDocument;
   }>;
 
   export type Homepage = Readonly<{

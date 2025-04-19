@@ -107,20 +107,6 @@ export async function getBlogsByQuery(
   return data;
 }
 
-/** Fetch site info from Sanity */
-export async function getSiteInfo() {
-  const query = `
-    *[_type == 'about'] {
-      title,
-      subtitle,
-      description,
-      largeDescription
-    }`;
-
-  const data: SanityTypes.AboutSite[] = await sanityClient.fetch(query);
-  return data[0];
-}
-
 /** Fetch privacy policy from Sanity */
 export async function getPrivacyPolicy() {
   const query = `
@@ -161,13 +147,29 @@ export async function getDisclaimer() {
   return data[0];
 }
 
+/** Fetch about us details from Sanity */
+export async function getSiteInfo() {
+  const query = `
+    *[_type == 'about'] {
+      title,
+      subtitle,
+      description,
+      largeDescription,
+      hero
+    }`;
+
+  const data: SanityTypes.AboutSite[] = await sanityClient.fetch(query);
+  return data[0];
+}
+
 /** Fetch contact us details from Sanity */
 export async function getContactUsDetails() {
   const query = `
     *[_type == 'contact'] {
       title,
       subtitle,
-      description
+      description,
+      hero
     }`;
 
   const data: SanityTypes.Contact[] = await sanityClient.fetch(query);

@@ -14,17 +14,19 @@ export default {
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'subtitle',
-      title: 'Sub title',
+      name: 'description',
+      title: 'Description',
       type: 'array',
       of: [{type: 'block'}],
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'array',
-      of: [{type: 'block'}],
+      name: 'hero',
+      title: 'Hero image',
+      type: 'image',
+      description:
+        'This will be the hero image. For best performance, upload images in WEBP format and in 16:9 aspect ratio.',
+      options: {hotspot: true}, // Allows you to crop the image
       validation: (rule) => rule.required(),
     }),
   ],

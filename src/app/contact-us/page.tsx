@@ -1,6 +1,5 @@
 import * as React from "react";
 import type { Metadata, NextPage } from "next";
-import Image from "next/image";
 import { PortableText } from "next-sanity";
 import { WithContext } from "schema-dts";
 import { FaEnvelopesBulk } from "react-icons/fa6";
@@ -10,7 +9,9 @@ import type { TContactPage, SanityTypes } from "@/@types";
 import { getContactUsDetails, getProfile } from "@/lib/utils";
 import ContactForm from "@/components/shared/contact-form";
 import StructuredData from "@/components/structured-data";
+import Jumbotron from "@/components/shared/jumbotron";
 import { SITE } from "@/lib/data";
+import { urlFor } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title:
@@ -62,29 +63,11 @@ const ContactUs: NextPage = async () => {
       <StructuredData data={schemaData} />
 
       <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10">
-        <section
-          data-layout="section"
-          className="w-full h-[75vh] rounded-tl-[8rem] rounded-br-[8rem] overflow-hidden relative"
-        >
-          <div className="w-full h-full top-0 left-0 absolute z-10 bg-black/50" />
-          <Image
-            className="object-contain bg-center aspect-auto"
-            blurDataURL="/assets/contact-bg.svg"
-            src="/assets/contact-bg.svg"
-            placeholder="blur"
-            alt="contact-us"
-            priority
-            fill
+        <section className="w-full">
+          <Jumbotron
+            title={contact.title}
+            image={urlFor(contact.hero).url()}
           />
-          <div className="absolute top-1/2 left-[20%] -translate-x-[20%] -translate-y-1/2 z-20">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-normal antialiased">
-              {contact.title}
-            </h1>
-
-            <div className="text-gray-100 font-normal text-lg leading-normal antialiased prose mt-5">
-              <PortableText value={contact.subtitle} />
-            </div>
-          </div>
         </section>
 
         <section

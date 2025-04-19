@@ -10,6 +10,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import StructuredData from "@/components/structured-data";
+import Jumbotron from "@/components/shared/jumbotron";
 import { getProfile, getSiteInfo } from "@/lib/utils";
 import type { SanityTypes } from "@/@types";
 import { urlFor } from "@/lib/sanity";
@@ -82,28 +83,11 @@ const About: NextPage = async () => {
       <StructuredData data={schemaData} />
 
       <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10">
-        <section
-          data-layout="section"
-          className="w-full h-[75vh] rounded-tl-[8rem] rounded-br-[8rem] overflow-hidden relative"
-        >
-          <div className="w-full h-full top-0 left-0 absolute z-10 bg-black/50" />
-          <Image
-            className="object-contain bg-center aspect-auto"
-            blurDataURL="/assets/about-bg.svg"
-            src="/assets/about-bg.svg"
-            placeholder="blur"
-            alt="about-us"
-            priority
-            fill
+        <section className="w-full">
+          <Jumbotron
+            title={aboutSite.title}
+            image={urlFor(aboutSite.hero).url()}
           />
-          <div className="absolute top-1/2 left-[20%] -translate-x-[20%] -translate-y-1/2 z-20">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-normal antialiased">
-              About Us
-            </h1>
-            <div className="text-gray-100 font-normal text-lg leading-normal antialiased prose mt-5">
-              <PortableText value={aboutSite.subtitle} />
-            </div>
-          </div>
         </section>
 
         <div
@@ -114,7 +98,7 @@ const About: NextPage = async () => {
             <div className="w-full flex flex-col-reverse md:flex-row items-center gap-10">
               <div>
                 <h1 className="text-foreground text-3xl sm:text-4xl md:text-5xl text-center md:text-left font-bold leading-normal antialiased">
-                  About <span className="text-primary">{aboutSite.title}</span>
+                  {aboutSite.title}
                 </h1>
 
                 <div className="w-full mt-8 font-normal text-base text-wrap leading-normal antialiased prose dark:prose-invert">
