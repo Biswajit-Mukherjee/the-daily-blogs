@@ -6,9 +6,21 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { NUMBER_OF_BLOGS_PER_PAGE } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 
-type Props = Readonly<{ query: string; page: string; startIndex: string; prevDisabled?: boolean; nextDisabled?: boolean }>;
+type Props = Readonly<{
+  query: string;
+  page: string;
+  startIndex: string;
+  prevDisabled?: boolean;
+  nextDisabled?: boolean;
+}>;
 
-const PageNav: React.FC<Props> = ({ query = "", page = "1", startIndex = "0", prevDisabled = false, nextDisabled = false }) => {
+const PageNav: React.FC<Props> = ({
+  query = "",
+  page = "1",
+  startIndex = "0",
+  prevDisabled = false,
+  nextDisabled = false,
+}) => {
   const router = useRouter();
 
   const handlePrevPageClick = async () => {
@@ -16,7 +28,9 @@ const PageNav: React.FC<Props> = ({ query = "", page = "1", startIndex = "0", pr
     const prevIndex = +startIndex - NUMBER_OF_BLOGS_PER_PAGE;
 
     if (query) {
-      router.push(`/blogs?query=${query}&page=${prevPage}&startIndex=${prevIndex.toString()}`);
+      router.push(
+        `/blogs?query=${query}&page=${prevPage}&startIndex=${prevIndex.toString()}`
+      );
     } else {
       router.push(`/blogs?page=${prevPage}&startIndex=${prevIndex.toString()}`);
     }
@@ -27,7 +41,9 @@ const PageNav: React.FC<Props> = ({ query = "", page = "1", startIndex = "0", pr
     const nextIndex = +startIndex + NUMBER_OF_BLOGS_PER_PAGE;
 
     if (query) {
-      router.push(`/blogs?query=${query}&page=${nextPage}&startIndex=${nextIndex.toString()}`);
+      router.push(
+        `/blogs?query=${query}&page=${nextPage}&startIndex=${nextIndex.toString()}`
+      );
     } else {
       router.push(`/blogs?page=${nextPage}&startIndex=${nextIndex.toString()}`);
     }

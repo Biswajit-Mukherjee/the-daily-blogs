@@ -5,7 +5,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
-import { Button } from "@/components/ui/button";
+import { Button, LoadingButton } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -94,6 +94,7 @@ const ContactForm: React.FC = () => {
               <FormControl>
                 <Input
                   className="bg-background w-full min-h-12 shadow-none flex-1 aria-invalid:border-destructive rounded-sm focus-visible:ring-2 ring-offset-2 text-base"
+                  disabled={submitting}
                   type="text"
                   {...field}
                 />
@@ -114,6 +115,7 @@ const ContactForm: React.FC = () => {
               <FormControl>
                 <Input
                   className="bg-background w-full min-h-12 shadow-none flex-1 rounded-sm aria-invalid:border-destructive focus-visible:ring-2 ring-offset-2 text-base"
+                  disabled={submitting}
                   type="email"
                   {...field}
                 />
@@ -134,6 +136,7 @@ const ContactForm: React.FC = () => {
               <FormControl>
                 <Input
                   className="bg-background w-full min-h-12 shadow-none flex-1 rounded-sm aria-invalid:border-destructive focus-visible:ring-2 ring-offset-2 text-base"
+                  disabled={submitting}
                   type="text"
                   {...field}
                 />
@@ -154,6 +157,7 @@ const ContactForm: React.FC = () => {
               <FormControl>
                 <Textarea
                   className="bg-background w-full min-h-40 shadow-none aria-invalid:border-destructive focus-visible:ring-2 ring-offset-2"
+                  disabled={submitting}
                   {...field}
                 />
               </FormControl>
@@ -171,7 +175,11 @@ const ContactForm: React.FC = () => {
               <FormLabel className="text-muted-foreground text-base font-normal antialiased">
                 Are you a subscriber on my youtube? (optional)
               </FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select
+                disabled={submitting}
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+              >
                 <FormControl className="bg-background w-full min-h-12 shadow-none flex-1 rounded-sm focus-visible:ring-2 ring-offset-2 text-base">
                   <SelectTrigger>
                     <SelectValue placeholder="—Please choose an option—" />
@@ -196,16 +204,22 @@ const ContactForm: React.FC = () => {
           )}
         />
 
-        <Button
-          id="al"
-          type="submit"
-          aria-label="contact-form-cta"
-          className="w-full h-14 mt-6 text-xl font-normal text-white rounded-sm"
-          aria-disabled={submitting}
-          disabled={submitting}
-        >
-          Submit
-        </Button>
+        <div className="w-full mt-6" data-uia="btn-container">
+          {!submitting && (
+            <Button
+              id="al"
+              type="submit"
+              aria-label="contact-form-cta"
+              className="w-full h-14 text-xl font-normal text-white rounded-sm"
+              aria-disabled={submitting}
+              disabled={submitting}
+            >
+              Submit
+            </Button>
+          )}
+
+          {submitting && <LoadingButton className="w-full h-14 rounded-sm" />}
+        </div>
       </form>
     </Form>
   );

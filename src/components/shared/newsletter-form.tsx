@@ -5,7 +5,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCheckCircle } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
+import { Button, LoadingButton } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -73,7 +73,7 @@ const NewsLetterForm: React.FC = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full grid gap-4"
+          className="w-full grid"
         >
           <FormField
             control={form.control}
@@ -83,8 +83,9 @@ const NewsLetterForm: React.FC = () => {
                 <FormControl>
                   <Input
                     className="bg-background w-full min-h-12 shadow-none flex-1 rounded-sm aria-invalid:border-destructive focus-visible:ring-2 ring-offset-2 text-base"
-                    type="email"
                     placeholder="Email address"
+                    disabled={submitting}
+                    type="email"
                     {...field}
                   />
                 </FormControl>
@@ -93,15 +94,21 @@ const NewsLetterForm: React.FC = () => {
             )}
           />
 
-          <Button
-            type="submit"
-            aria-label="newsletter-form-cta"
-            className="w-full h-12 text-base leading-none font-medium text-white rounded-sm"
-            aria-disabled={submitting}
-            disabled={submitting}
-          >
-            Subscribe
-          </Button>
+          <div className="w-full mt-4" data-uia="btn-container">
+            {!submitting && (
+              <Button
+                type="submit"
+                aria-label="newsletter-form-cta"
+                className="w-full h-12 text-base leading-none font-medium text-white rounded-sm"
+                aria-disabled={submitting}
+                disabled={submitting}
+              >
+                Subscribe
+              </Button>
+            )}
+
+            {submitting && <LoadingButton className="w-full h-12 rounded-sm" />}
+          </div>
         </form>
       </Form>
     </div>
