@@ -131,15 +131,21 @@ const ContactUs: NextPage = async () => {
           className="w-full max-w-6xl grid mt-20 mx-auto mb-32"
           data-layout="section"
         >
-          <h1 className="text-center text-foreground text-3xl sm:text-4xl md:text-5xl font-bold leading-normal antialiased mx-auto">
+          <h1
+            aria-label="contact-form-title"
+            className="text-center text-foreground text-3xl sm:text-4xl md:text-5xl font-bold leading-normal antialiased mx-auto"
+          >
             Send a Message
           </h1>
 
-          <p className="text-base font-normal leading-normal antialiased text-center text-muted-foreground prose mx-auto mt-4">
-            I would love to hear from you!
+          <p
+            aria-label="contact-form-subtitle"
+            className="text-base font-normal leading-normal antialiased text-center text-muted-foreground prose mx-auto mt-4"
+          >
+            We would love to hear from you!
           </p>
 
-          <div className="w-full grid gap-5 p-4">
+          <div aria-label="contact-form-container" className="w-full grid gap-5 p-4">
             <ContactForm />
 
             <p className="text-muted-foreground font-normal text-base leading-normal antialiased text-center prose mt-2.5 mx-auto mb-0">
