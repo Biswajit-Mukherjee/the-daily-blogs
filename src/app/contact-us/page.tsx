@@ -63,11 +63,8 @@ const ContactUs: NextPage = async () => {
       <StructuredData data={schemaData} />
 
       <div className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10">
-        <section className="w-full">
-          <Jumbotron
-            title={contact.title}
-            image={urlFor(contact.hero).url()}
-          />
+        <section className="w-full mt-10 mx-auto mb-0">
+          <Jumbotron title={contact.title} image={urlFor(contact.hero).url()} />
         </section>
 
         <section

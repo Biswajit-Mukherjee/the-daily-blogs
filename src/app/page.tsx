@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 import type { Metadata, NextPage } from "next";
 import { PortableText } from "next-sanity";
 import { WebSite, WithContext } from "schema-dts";
@@ -8,9 +9,12 @@ import BlogCard from "@/components/shared/blog-card";
 import Jumbotron from "@/components/shared/jumbotron";
 import StructuredData from "@/components/structured-data";
 import AllBlogsButton from "@/components/shared/all-blogs-btn";
+import NewsLetterForm from "@/components/shared/newsletter-form";
+import { Separator } from "@/components/ui/separator";
 import { urlFor } from "@/lib/sanity";
 import { SITE } from "@/lib/data";
 
+/** Runtime */
 export const runtime = "edge";
 
 export const metadata: Metadata = {
@@ -74,7 +78,7 @@ const Home: NextPage = async () => {
       <StructuredData data={schemaData} />
 
       <main className="w-full min-h-screen bg-muted/50 dark:bg-muted grid gap-10 px-4 py-10">
-        <section className="w-full">
+        <section className="w-full mt-0 mx-auto mb-0">
           <Jumbotron title={home.title} image={urlFor(home.image).url()} />
         </section>
 
@@ -104,9 +108,28 @@ const Home: NextPage = async () => {
 
         <section
           data-uia="load-all-blogs"
-          className="w-full max-w-5xl mt-0 mx-auto mb-16 flex items-center justify-center"
+          className="w-full max-w-5xl mx-auto my-0 flex items-center justify-center"
         >
           <AllBlogsButton />
+        </section>
+
+        <Separator className="w-full max-w-5xl mx-auto bg-muted-foreground/10 dark:bg-muted-foreground/25" />
+
+        <section
+          data-uia="newsletter"
+          className="w-full max-w-5xl mt-8 mx-auto mb-16"
+        >
+          <h3 className="w-full mt-0 mx-auto mb-8 align-middle text-xl sm:text-2xl md:text-3xl text-center font-bold text-nowrap antialiased">
+            Subscribe to our newsletter
+          </h3>
+          <NewsLetterForm />
+          <div className="w-full mt-5 text-center align-middle text-sm leading-normal font-normal antialiased text-muted-foreground">
+            We care about your data. Read our{" "}
+            <strong className="hover:underline active:underline underline-offset-2">
+              <Link href="/privacy">Privacy policy</Link>
+            </strong>
+            .
+          </div>
         </section>
       </main>
     </>

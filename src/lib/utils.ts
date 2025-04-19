@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { sanityClient } from "./sanity";
-import { Navlinks, type SanityTypes } from "@/@types";
+import { Footer, Navlinks, type SanityTypes } from "@/@types";
 import { MOST_RECENT_BLOGS, NUMBER_OF_BLOGS_PER_PAGE } from "./data";
 
 /** Merge tailwind classes */
@@ -199,4 +199,18 @@ export async function getHomepageNavlinks() {
 
   const data = await sanityClient.fetch(query);
   return data[0] as Navlinks;
+}
+
+/** Fetch footer details from Sanity */
+export async function getFooterDetails() {
+  const query = `
+    *[_type == 'footer'] {
+      label,
+      helpText,
+      copyrightMsg,
+      links,
+    }`;
+
+  const data: Footer[] = await sanityClient.fetch(query);
+  return data[0];
 }

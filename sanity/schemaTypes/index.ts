@@ -8,6 +8,7 @@ import disclaimer from './disclaimer'
 import contact from './contact'
 import homepage from './homepage'
 import navlink from './navlink'
+import footer from './footer'
 
 export const schemaTypes = [
   author,
@@ -20,4 +21,5 @@ export const schemaTypes = [
   contact,
   homepage,
   navlink,
+  footer,
 ]

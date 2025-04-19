@@ -4,6 +4,7 @@ import * as React from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -22,12 +23,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "react-toastify";
 
 const formSchema = z.object({
-  name: z.string().min(1, { message: "Please provide your full name." }).max(60, {
-    message: "Name must not exceed 60 characters.",
-  }),
+  name: z
+    .string()
+    .min(1, { message: "Please provide your full name." })
+    .max(60, {
+      message: "Name must not exceed 60 characters.",
+    }),
   email: z.string().email({ message: "Please provide a valid email address." }),
   subject: z
     .string()
@@ -196,7 +199,7 @@ const ContactForm: React.FC = () => {
         <Button
           id="al"
           type="submit"
-          aria-label="submit Button"
+          aria-label="contact-form-cta"
           className="w-full h-14 mt-6 text-xl font-normal text-white rounded-sm"
           aria-disabled={submitting}
           disabled={submitting}

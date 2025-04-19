@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 
 import * as React from "react";
-import { type SanityImageAssetDocument } from "next-sanity";
-import { type ContactPage } from "schema-dts";
+import type { SanityImageAssetDocument } from "next-sanity";
+import type { ContactPage } from "schema-dts";
 
 // Next types
 export namespace NextTypes {
@@ -109,4 +109,19 @@ export type Navlink = Readonly<{
   label: string;
   pathname: string;
   href: string;
+}>;
+
+// Footer types
+export type FooterLink = Readonly<{
+  _key: string;
+  label: string;
+  ariaLabel: string;
+  href: string;
+}>;
+
+export type Footer = Readonly<{
+  label: string;
+  helpText: never;
+  links: FooterLink[];
+  copyrightMsg: string;
 }>;

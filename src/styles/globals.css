@@ -114,3 +114,8 @@ strong {
 .prose a {
   @apply text-primary;
 }
+
+/* Footer */
+.foo a {
+  @apply font-normal text-muted-foreground;
+}
