@@ -4,11 +4,11 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter } from "next/font/google";
 import { Bounce, ToastContainer } from "react-toastify";
-import { type NextTypes } from "@/@types";
-import { SITE } from "@/lib/data";
+import type { NextTypes } from "@/@types";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";
+import { SITE } from "@/lib/data";
 
 // If loading a variable font, you don't need to specify the font weight
 const ff = Inter({

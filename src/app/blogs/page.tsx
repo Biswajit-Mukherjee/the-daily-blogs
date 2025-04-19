@@ -1,15 +1,15 @@
 import * as React from "react";
+import type { Metadata, NextPage } from "next";
+import { BlogPosting, CollectionPage, WithContext } from "schema-dts";
 import { redirect } from "next/navigation";
-import { type SanityTypes } from "@/@types";
+import type { SanityTypes } from "@/@types";
 import { getBlogs, getBlogsByQuery } from "@/lib/utils";
 import SearchBox from "@/components/ui/search-box";
 import PageNav from "@/components/ui/page-nav";
 import Loader from "@/components/shared/loader";
 import FilteredBlogs from "@/components/shared/filtered-blogs";
 import BlogsNotFound from "@/components/shared/blogs-not-found";
-import { Metadata, NextPage } from "next";
 import { SITE } from "@/lib/data";
-import { BlogPosting, CollectionPage, WithContext } from "schema-dts";
 import StructuredData from "@/components/structured-data";
 
 export const metadata: Metadata = {

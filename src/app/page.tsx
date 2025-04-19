@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Metadata, NextPage } from "next";
+import type { Metadata, NextPage } from "next";
 import { PortableText } from "next-sanity";
 import { WebSite, WithContext } from "schema-dts";
 import { getHomepageDetails, getMostRecentBlogs } from "@/lib/utils";
-import { type SanityTypes } from "@/@types";
+import type { SanityTypes } from "@/@types";
 import BlogCard from "@/components/shared/blog-card";
 import Jumbotron from "@/components/shared/jumbotron";
 import StructuredData from "@/components/structured-data";

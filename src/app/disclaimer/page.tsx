@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Metadata, NextPage } from "next";
+import type { Metadata, NextPage } from "next";
 import { PortableText } from "next-sanity";
-import dayjs from "dayjs";
-import { type SanityTypes } from "@/@types";
-import { getDisclaimer } from "@/lib/utils";
-import { SITE } from "@/lib/data";
-import StructuredData from "@/components/structured-data";
 import { WebPage, WithContext } from "schema-dts";
+import dayjs from "dayjs";
+import type { SanityTypes } from "@/@types";
+import { getDisclaimer } from "@/lib/utils";
+import StructuredData from "@/components/structured-data";
+import { SITE } from "@/lib/data";
 
 export const metadata: Metadata = {
   title:
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "The Daily Blogs",
   ],
   alternates: {
-    canonical: new URL(SITE.url + '/disclaimer'),
+    canonical: new URL(SITE.url + "/disclaimer"),
   },
   robots: "index,noarchive,follow,max-image-preview:large",
   authors: [{ name: SITE.creator }],

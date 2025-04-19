@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Metadata, NextPage } from "next";
+import type { Metadata, NextPage } from "next";
 import { PortableText } from "next-sanity";
+import { WebPage, WithContext } from "schema-dts";
 import dayjs from "dayjs";
-import { type SanityTypes } from "@/@types";
+import type { SanityTypes } from "@/@types";
 import { getPrivacyPolicy } from "@/lib/utils";
 import { SITE } from "@/lib/data";
-import { WebPage, WithContext } from "schema-dts";
 import StructuredData from "@/components/structured-data";
 
 export const metadata: Metadata = {

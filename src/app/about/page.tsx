@@ -1,19 +1,19 @@
 import * as React from "react";
-import { Metadata, NextPage } from "next";
+import type { Metadata, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PortableText } from "next-sanity";
 import { AboutPage, WithContext } from "schema-dts";
 import { MoveRight } from "lucide-react";
 import { GrMail } from "react-icons/gr";
 import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { getProfile, getSiteInfo } from "@/lib/utils";
-import { urlFor } from "@/lib/sanity";
-import { type SanityTypes } from "@/@types";
-import { PortableText } from "next-sanity";
-import { SITE } from "@/lib/data";
 import StructuredData from "@/components/structured-data";
+import { getProfile, getSiteInfo } from "@/lib/utils";
+import type { SanityTypes } from "@/@types";
+import { urlFor } from "@/lib/sanity";
+import { SITE } from "@/lib/data";
 
 export const metadata: Metadata = {
   title:

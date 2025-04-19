@@ -1,16 +1,16 @@
 import * as React from "react";
-import { Metadata, NextPage } from "next";
+import type { Metadata, NextPage } from "next";
 import Image from "next/image";
+import { PortableText } from "next-sanity";
+import { WithContext } from "schema-dts";
 import { FaEnvelopesBulk } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-import { type TContactPage, type SanityTypes } from "@/@types";
+import type { TContactPage, SanityTypes } from "@/@types";
 import { getContactUsDetails, getProfile } from "@/lib/utils";
 import ContactForm from "@/components/shared/contact-form";
-import { SITE } from "@/lib/data";
-import { PortableText } from "next-sanity";
-import { WithContext } from "schema-dts";
 import StructuredData from "@/components/structured-data";
+import { SITE } from "@/lib/data";
 
 export const metadata: Metadata = {
   title:

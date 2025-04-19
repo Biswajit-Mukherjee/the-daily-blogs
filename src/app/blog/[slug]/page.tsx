@@ -10,7 +10,7 @@ import { CalendarIcon } from "lucide-react";
 import { PortableText } from "@portabletext/react";
 import { BlogPosting, WithContext } from "schema-dts";
 import { getBlog } from "@/lib/utils";
-import { type SanityTypes } from "@/@types";
+import type { SanityTypes } from "@/@types";
 import { SITE } from "@/lib/data";
 import { urlFor } from "@/lib/sanity";
 import { redis } from "@/lib/redis";
