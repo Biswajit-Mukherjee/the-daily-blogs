@@ -119,11 +119,19 @@ const Home: NextPage = async () => {
           data-uia="newsletter"
           className="w-full max-w-5xl mt-8 mx-auto mb-16"
         >
-          <h3 className="w-full mt-0 mx-auto mb-8 align-middle text-xl sm:text-2xl md:text-3xl text-center font-bold text-nowrap antialiased">
+          <h3
+            aria-label="newsletter-form-title"
+            className="w-full mt-0 mx-auto mb-8 align-middle text-xl sm:text-2xl md:text-3xl text-center font-bold text-nowrap antialiased"
+          >
             Subscribe to our newsletter
           </h3>
+
           <NewsLetterForm />
-          <div className="w-full mt-5 text-center align-middle text-sm leading-normal font-normal antialiased text-muted-foreground">
+
+          <div
+            aria-label="privacy-text"
+            className="w-full mt-5 text-center align-middle text-sm leading-normal font-normal antialiased text-muted-foreground"
+          >
             We care about your data. Read our{" "}
             <strong className="hover:underline active:underline underline-offset-2">
               <Link href="/privacy">Privacy policy</Link>
