@@ -14,8 +14,8 @@ const AllBlogsButton: React.FC = () => {
   return (
     <Button
       className="overflow-hidden hover:bg-primary/10 active:bg-primary/10 dark:hover:bg-primary/25 dark:active:bg-primary/25 p-6 hover:no-underline active:no-underline text-lg leading-normal antialiased"
+      aria-label="load-all-blogs-cta"
       variant="link"
-      aria-label="load-all-blogs-btn"
       onClick={handleClick}
     >
       See all blogs
