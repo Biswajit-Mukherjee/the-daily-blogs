@@ -36,5 +36,13 @@ export default {
       options: {hotspot: true}, // Allows you to crop the image
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'about',
+      title: 'About-site image',
+      type: 'image',
+      description: 'This will be the about site image',
+      options: {hotspot: true}, // Allows you to crop the image
+      validation: (rule) => rule.required(),
+    }),
   ],
 }

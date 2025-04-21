@@ -40,7 +40,7 @@ const Footer: React.FC = async () => {
 
       <div
         aria-label="copyright-message"
-        className="text-foreground/80 text-sm font-normal leading-normal text-center antialiased mt-6 mx-auto mb-3"
+        className="text-foreground/80 text-sm font-normal leading-normal text-center antialiased mt-6 mx-auto mb-4"
       >
         &copy; {foo.copyrightMsg}
         <span className="sr-only">{foo.copyrightMsg}</span>

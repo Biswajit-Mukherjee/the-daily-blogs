@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Metadata, NextPage } from "next";
-import { PortableText } from "next-sanity";
+import { PortableText } from "@portabletext/react";
 import { WithContext } from "schema-dts";
 import { FaEnvelopesBulk } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
@@ -10,8 +10,8 @@ import { getContactUsDetails, getProfile } from "@/lib/utils";
 import ContactForm from "@/components/shared/contact-form";
 import StructuredData from "@/components/structured-data";
 import Jumbotron from "@/components/shared/jumbotron";
-import { SITE } from "@/lib/data";
 import { urlFor } from "@/lib/sanity";
+import { SITE } from "@/lib/data";
 
 export const metadata: Metadata = {
   title:
@@ -94,7 +94,7 @@ const ContactUs: NextPage = async () => {
                 <FaEnvelopesBulk size={40} />
               </div>
               <h3 className="text-2xl font-bold leading-normal antialiased text-foreground">
-                Email Me
+                Email Us
               </h3>
               <div className="text-base leading-normal antialiased text-muted-foreground">
                 {profile.email}
@@ -145,10 +145,13 @@ const ContactUs: NextPage = async () => {
             We would love to hear from you!
           </p>
 
-          <div aria-label="contact-form-container" className="w-full grid gap-5 p-4">
-            <ContactForm />
+          <div
+            aria-label="contact-form-container"
+            className="w-full grid gap-5 p-4"
+          >
+            <ContactForm modal={contact.modal} />
 
-            <p className="text-muted-foreground font-normal text-base leading-normal antialiased text-center prose mt-2.5 mx-auto mb-0">
+            <p className="text-muted-foreground font-normal text-sm leading-normal antialiased text-center prose mt-2.5 mx-auto mb-0">
               Don&apos;t worry, we don&apos;t send any spam messages 😉
             </p>
           </div>

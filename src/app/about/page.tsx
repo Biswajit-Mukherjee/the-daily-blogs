@@ -2,7 +2,7 @@ import * as React from "react";
 import type { Metadata, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { PortableText } from "next-sanity";
+import { PortableText } from "@portabletext/react";
 import { AboutPage, WithContext } from "schema-dts";
 import { MoveRight } from "lucide-react";
 import { GrMail } from "react-icons/gr";
@@ -118,8 +118,8 @@ const About: NextPage = async () => {
                 <AspectRatio ratio={1.5}>
                   <Image
                     className="w-full h-full object-contain bg-center aspect-auto"
-                    blurDataURL="/assets/about-site.png"
-                    src="/assets/about-site.png"
+                    blurDataURL={urlFor(aboutSite.about).url()}
+                    src={urlFor(aboutSite.about).url()}
                     placeholder="blur"
                     alt="about-site"
                     priority
@@ -145,7 +145,7 @@ const About: NextPage = async () => {
             className="w-full max-w-6xl mx-auto"
           >
             <h1 className="w-full pt-20 text-center text-foreground text-3xl sm:text-4xl md:text-5xl font-bold leading-normal antialiased">
-              About me
+              About the author
             </h1>
 
             <div className="w-full mt-12 mb-24 flex flex-col md:flex-row gap-6">
@@ -159,8 +159,8 @@ const About: NextPage = async () => {
                       className="w-full h-full object-cover bg-center aspect-auto"
                       blurDataURL={urlFor(profile.image).url()}
                       src={urlFor(profile.image).url()}
-                      placeholder="blur"
                       alt={profile.name}
+                      placeholder="blur"
                       priority
                       fill
                     />

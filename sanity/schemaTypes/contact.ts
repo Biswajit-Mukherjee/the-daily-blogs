@@ -29,5 +29,13 @@ export default {
       options: {hotspot: true}, // Allows you to crop the image
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'modal',
+      title: 'Contact Form Success Modal',
+      type: 'reference',
+      to: [{type: 'modal'}],
+      description: 'This will be the popup modal on contact form submit',
+      validation: (rule) => rule.required(),
+    }),
   ],
 }

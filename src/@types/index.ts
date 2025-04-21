@@ -75,12 +75,14 @@ export namespace SanityTypes {
     description: never;
     largeDescription: never;
     hero: SanityImageAssetDocument;
+    about: SanityImageAssetDocument;
   }>;
 
   export type Contact = Readonly<{
+    hero: SanityImageAssetDocument;
     title: string;
     description: never;
-    hero: SanityImageAssetDocument;
+    modal: { name: string; title: string; body: never };
   }>;
 
   export type Homepage = Readonly<{

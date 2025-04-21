@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Metadata, NextPage } from "next";
-import { PortableText } from "next-sanity";
+import { PortableText } from "@portabletext/react";
 import dayjs from "dayjs";
 import { WebPage, WithContext } from "schema-dts";
 import type { SanityTypes } from "@/@types";

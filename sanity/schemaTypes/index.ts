@@ -9,6 +9,7 @@ import contact from './contact'
 import homepage from './homepage'
 import navlink from './navlink'
 import footer from './footer'
+import modal from './modal'
 
 export const schemaTypes = [
   author,
@@ -22,4 +23,5 @@ export const schemaTypes = [
   homepage,
   navlink,
   footer,
+  modal,
 ]

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCheckCircle } from "react-icons/fa";
 import { Button, LoadingButton } from "@/components/ui/button";
+import { NewsletterFormSchema } from "@/lib/schema";
 import {
   Form,
   FormControl,
@@ -14,10 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-const formSchema = z.object({
-  email: z.string().email({ message: "Please provide a valid email address." }),
-});
 
 const NewsLetterForm: React.FC = () => {
   const [submitting, setSubmitting] = React.useState<boolean>(false);
@@ -32,13 +29,13 @@ const NewsLetterForm: React.FC = () => {
   }, [message]);
 
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof NewsletterFormSchema>>({
+    resolver: zodResolver(NewsletterFormSchema),
     defaultValues: { email: "" },
   });
 
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof NewsletterFormSchema>) {
     setSubmitting(true);
     setTimeout(() => {
       console.log(values);
@@ -60,8 +57,8 @@ const NewsLetterForm: React.FC = () => {
       data-uia="form-container"
     >
       {message && (
-        <div className="w-full text-center align-middle leading-normal font-normal text-sm antialiased text-green-500 flex items-center justify-center">
-          <div className="w-full flex flex-row items-center gap-1 flex-1">
+        <div className="w-full flex items-center justify-center">
+          <div className="w-full align-middle leading-normal font-normal text-sm antialiased text-green-500 flex flex-row items-center gap-1.5 flex-1">
             <span data-uia="icon">
               <FaCheckCircle size={20} />
             </span>
@@ -81,6 +78,7 @@ const NewsLetterForm: React.FC = () => {
                   <Input
                     className="bg-background w-full min-h-12 shadow-none flex-1 rounded-sm aria-invalid:border-destructive focus-visible:ring-2 ring-offset-2 text-base"
                     placeholder="Email address"
+                    autoComplete="email"
                     aria-label="email"
                     disabled={submitting}
                     type="email"

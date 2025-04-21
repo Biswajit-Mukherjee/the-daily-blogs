@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import type { Metadata, NextPage } from "next";
-import { PortableText } from "next-sanity";
+import { PortableText } from "@portabletext/react";
 import { WebSite, WithContext } from "schema-dts";
 import { getHomepageDetails, getMostRecentBlogs } from "@/lib/utils";
 import type { SanityTypes } from "@/@types";
@@ -125,6 +125,11 @@ const Home: NextPage = async () => {
           >
             Subscribe to our newsletter
           </h3>
+
+          <div className="w-full max-w-xl mt-2.5 mx-auto mb-10 text-center text-foreground text-base leading-normal antialiased">
+            Subscribe to our newsletter and receive the latest updates on what&apos;s new,
+            recently published blogs and other important stuff.
+          </div>
 
           <NewsLetterForm />
 

@@ -23,6 +23,7 @@ const ContentSecurityPolicy = `
 const nextConfig: NextConfig = {
   /* Images */
   images: {
+    // unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

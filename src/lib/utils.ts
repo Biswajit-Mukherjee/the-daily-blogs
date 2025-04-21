@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { customAlphabet } from "nanoid";
 import { sanityClient } from "./sanity";
 import { Footer, Navlinks, type SanityTypes } from "@/@types";
 import { MOST_RECENT_BLOGS, NUMBER_OF_BLOGS_PER_PAGE } from "./data";
@@ -7,6 +8,14 @@ import { MOST_RECENT_BLOGS, NUMBER_OF_BLOGS_PER_PAGE } from "./data";
 /** Merge tailwind classes */
 export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
+}
+
+/** Generate nanoid random number */
+export function generateID() {
+  const nanoid = customAlphabet("1234567890qKORTVWXYZ", 20);
+  const id = nanoid();
+
+  return id;
 }
 
 /** Fetch most recent blogs from Sanity in descending order of creation date */
@@ -155,7 +164,8 @@ export async function getSiteInfo() {
       subtitle,
       description,
       largeDescription,
-      hero
+      hero,
+      about
     }`;
 
   const data: SanityTypes.AboutSite[] = await sanityClient.fetch(query);
@@ -166,10 +176,10 @@ export async function getSiteInfo() {
 export async function getContactUsDetails() {
   const query = `
     *[_type == 'contact'] {
+      hero,
       title,
-      subtitle,
       description,
-      hero
+      modal -> { name, title, body }
     }`;
 
   const data: SanityTypes.Contact[] = await sanityClient.fetch(query);
