@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";
 import { SITE } from "@/lib/data";
+import { redirect } from "next/navigation";
 
 // If loading a variable font, you don't need to specify the font weight
 const ff = Inter({
@@ -40,6 +41,8 @@ export const metadata: Metadata = {
 export const revalidate = 3600; // revalidate at most every hour
 
 const RootLayout: NextPage<NextTypes.Layout> = ({ children }) => {
+  redirect('https://www.modernlivinglifestyle.com/');
+
   return (
     <html lang="en">
       <body className={`${ff.className} antialiased`}>
